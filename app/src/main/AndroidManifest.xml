@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Thanh"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".activity.course_user_calendar"
+            android:exported="false" />
+        <activity
+            android:name=".activity.course_user_signed_get"
+            android:exported="false" />
+        <activity
+            android:name=".activity.course_user_signed_gets"
+            android:exported="false" />
+        <activity
+            android:name=".activity.payment_user_post"
+            android:exported="false" />
+        <activity
+            android:name=".activity.course_user_get"
+            android:exported="false" />
+        <activity
+            android:name=".activity.message_user_get"
+            android:exported="false" />
+        <activity
+            android:name=".activity.food_user_gets"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddNewFoodUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddNewFood"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddNewConversation"
+            android:exported="false" />
+        <activity
+            android:name=".activity.conversation_user_gets"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.course_user_gets"
+            android:exported="false" />
+        <activity
+            android:name=".activity.post_user_gets"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

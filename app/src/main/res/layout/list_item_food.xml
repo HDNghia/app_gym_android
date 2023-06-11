@@ -1,0 +1,50 @@
+<!-- item_message.xml -->
+<LinearLayout
+    android:id="@+id/item_food"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/rounded_corner_white"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/foodImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/banana"
+        android:contentDescription="ten" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp">
+        <TextView
+            android:id="@+id/nameFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chuoi"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/Ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 qua"
+
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="108 cal"
+        android:textStyle="bold"
+        android:textSize="12sp"/>
+
+</LinearLayout>

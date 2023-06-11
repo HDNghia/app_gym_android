@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="12dp" />
+    <gradient
+        android:startColor="#C8FFB4" android:endColor="#DFF0DF"  android:angle="45"   android:type="linear" />          <!-- Loại gradient: linear, radial, sweep -->
+</shape>

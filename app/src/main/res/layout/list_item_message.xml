@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- list_item_conversation.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start">
+        <ImageView
+            android:id="@+id/face_partner"
+            android:layout_width="41dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_baseline_tag_faces_24"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/chatTextViewLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:gravity="start"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+        <TextView
+            android:id="@+id/chatTextViewRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/face_user"
+            android:layout_width="41dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_baseline_tag_faces_24"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+<!-- list_item_food.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/text_id"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/foodImageView"
+        android:layout_width="35dp"
+        android:layout_marginRight="50dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_baseline_image_24"/>
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="100dp"
+        android:text="Trung"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_nutrition"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:text="vitaminD"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textStyle="bold" />-->
+
+    <TextView
+        android:id="@+id/text_kcal"
+        android:layout_width="100dp"
+        android:text="120 cal"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
+
+</LinearLayout>

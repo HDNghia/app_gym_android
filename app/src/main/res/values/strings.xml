@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Thanh</string>
+    <string name="navigation_drawer_open">Click to open</string>
+    <string name="navigation_drawer_close">Click to close</string>
+    <string-array name="Session_items">
+        <item>breakfast</item>
+        <item>lunch</item>
+        <item>afternoon</item>
+        <item>dinner</item>
+    </string-array>
+</resources>

@@ -1,0 +1,21 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Border -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+    <!-- Inner Circle -->
+    <item
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="2dp">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:color="#DFDBDB"
+                android:width="3dp" />
+        </shape>
+    </item>
+</layer-list>
