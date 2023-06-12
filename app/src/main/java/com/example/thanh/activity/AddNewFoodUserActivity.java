@@ -12,12 +12,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.thanh.R;
+import com.example.thanh.adapter.ConversationAdapter;
 import com.example.thanh.adapter.FoodListAdapter;
+import com.example.thanh.adapter.FoodUserListAdapter;
 import com.example.thanh.model.FoodItem;
 import com.example.thanh.model.FoodUser;
 import com.example.thanh.retrofit.ApiService;
@@ -29,19 +32,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class AddNewFoodUserActivity extends AppCompatActivity {
+public class AddNewFoodUserActivity extends AppCompatActivity implements FoodListAdapter.OnFoodClickListener {
 
     private FoodListAdapter adapter;
-    private EditText foodIdEditText;
-    private EditText userIdEditText;
-    private EditText useDatetimeEditText;
+    private TextView foodIdEditText;
+//    private EditText userIdEditText;
+//    private EditText useDatetimeEditText;
     private Spinner  sessionsSpinner;
     private Button AddNewFoodUser;
     private ListView listFood;
     private Button AddNewFood;
     private ApiService apiService;
-
     private List<FoodItem> foodItemList;
+    private String foodName;
+    private Integer foodId;
 
     @SuppressLint({"MissingInflatedId"})
     @Override
@@ -51,8 +55,8 @@ public class AddNewFoodUserActivity extends AppCompatActivity {
 
         // Ánh xạ các view từ layout
         foodIdEditText = findViewById(R.id.foodIdEditText);
-        userIdEditText = findViewById(R.id.userIdEditText);
-        useDatetimeEditText = findViewById(R.id.useDatetimeEditText);
+//        userIdEditText = findViewById(R.id.userIdEditText);
+//        useDatetimeEditText = findViewById(R.id.useDatetimeEditText);
         sessionsSpinner = findViewById(R.id.sessionsSpinner);
         AddNewFoodUser = findViewById(R.id.AddNewFoodUser);
         listFood = findViewById(R.id.listFood);
@@ -91,6 +95,7 @@ public class AddNewFoodUserActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     private void getFood(ApiService apiService) {
@@ -103,7 +108,7 @@ public class AddNewFoodUserActivity extends AppCompatActivity {
                     foodItemList = response.body();
 //                    Log.d("bug", String.valueOf(new Gson().toJson(foodItemList)));
                     adapter = new FoodListAdapter(AddNewFoodUserActivity.this, foodItemList);
-//                    adapter.setOnConversationClickListener(MainActivity.this); // Đăng ký listener
+                    adapter.setOnFoodClickListener(AddNewFoodUserActivity.this); // Đăng ký listener
                     listFood.setAdapter(adapter);
                 } else {
                     Toast.makeText(AddNewFoodUserActivity.this, "Failed to get foodUser", Toast.LENGTH_SHORT).show();
@@ -123,9 +128,9 @@ public class AddNewFoodUserActivity extends AppCompatActivity {
         // Tạo object Message
 
         FoodUser foodUser = new FoodUser();
-        foodUser.setFoodId(Integer.parseInt(foodIdEditText.getText().toString()));
-        foodUser.setUserId(Integer.parseInt(userIdEditText.getText().toString()));
-        foodUser.setUseDatetime(Integer.parseInt(useDatetimeEditText.getText().toString()));
+        foodUser.setFoodId(foodId);
+        foodUser.setUserId(1);
+//        foodUser.setUseDatetime(Integer.parseInt(useDatetimeEditText.getText().toString()));
         foodUser.setSession(sessionsSpinner.getSelectedItem().toString());
 
         // Gửi yêu cầu POST
@@ -139,7 +144,6 @@ public class AddNewFoodUserActivity extends AppCompatActivity {
                     FoodUser postedFoodUser = response.body();
 //                    Log.d("bug", String.valueOf(new Gson().toJson(postedFoodUser)));
                     Toast.makeText(AddNewFoodUserActivity.this, "Post foodUser successfully", Toast.LENGTH_SHORT).show();
-
 //                    }
                 } else {
                     // Xử lý lỗi khi gửi yêu cầu POST
@@ -154,5 +158,14 @@ public class AddNewFoodUserActivity extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public void onFoodClick(String FoodName, int FoodId) {
+        // Xử lý sự kiện khi người dùng nhấp vào một cuộc trò chuyện
+//       Log.d("bug", String.valueOf(partnerId));
+        foodName = FoodName;
+        foodId = FoodId;
+//        Toast.makeText(AddNewConversation.this, String.valueOf(Name), Toast.LENGTH_SHORT).show();
+        foodIdEditText.setText(foodName);
+//        listPartner.setVisibility(View.GONE);
+    }
 }

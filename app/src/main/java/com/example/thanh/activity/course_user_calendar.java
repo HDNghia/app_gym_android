@@ -40,7 +40,6 @@ public class course_user_calendar extends NavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         int courseId = getIntent().getIntExtra("_id", -1);
 
         ImageButton btnGoBack = findViewById(R.id.btnBack);

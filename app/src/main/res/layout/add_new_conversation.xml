@@ -42,27 +42,27 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="User ID" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/userIdEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Enter User ID" />-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User ID" />
-
-    <EditText
-        android:id="@+id/userIdEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter User ID" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Partner ID" />
+        android:text="Partner Name" />
 
     <EditText
         android:id="@+id/partnerIdEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Partner ID" />
+        android:hint="Enter Partner" />
 
     <ListView
         android:id="@+id/listPartner"
@@ -70,16 +70,16 @@
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Last Active" />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Last Active" />-->
 
-    <EditText
-        android:id="@+id/lastActiveEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Last Active" />
+<!--    <EditText-->
+<!--        android:id="@+id/lastActiveEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Enter Last Active" />-->
 
     <TextView
         android:layout_width="wrap_content"
