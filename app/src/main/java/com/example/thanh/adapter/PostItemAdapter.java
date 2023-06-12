@@ -35,8 +35,11 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
         Post postItem = postItems.get(position);
         ImageView imageView = view.findViewById(R.id.posterImageView);
 
-        if(postItem.getAttachmentId1() != "null"){
+        if(postItem.getAttachmentId1().equals("null")){
+            imageView.setVisibility(View.GONE);
 //        ImageView imageView = view.findViewById(R.id.userImageView);
+
+        }else {
             String imageUrl = postItem.getAttachmentId1();
             Picasso.get()
                     .load(imageUrl)
@@ -44,8 +47,6 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
                     .resize(400, 200)
                     .into(imageView);
             imageView.setVisibility(View.VISIBLE);
-        }else {
-            imageView.setVisibility(View.GONE);
         }
 
         TextView titleTextView = view.findViewById(R.id.titleTextView);
@@ -60,6 +61,12 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
 
         ImageView commentImageView = view.findViewById(R.id.commentImageView);
         ImageView likeImageView = view.findViewById(R.id.likeImageView);
+
+        if(postItem.getCountlike() == 1){
+            likeImageView.setImageResource(R.drawable.ic_baseline_recommend_24_liked);
+        }else {
+            likeImageView.setImageResource(R.drawable.ic_baseline_recommend_24);
+        }
 
         final int postId = postItem.getId();
         final int userId = postItem.getOwnerId();
@@ -76,7 +83,7 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
             @Override
             public void onClick(View view) {
                 if (clickListener1 != null) {
-                    Log.d("bug","voo like apdater");
+//                    Log.d("bug","voo like apdater");
                     clickListener1.onLikeClick(postId, userId);
                 }
             }

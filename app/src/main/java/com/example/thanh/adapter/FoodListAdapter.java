@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.thanh.activity.AddNewFoodUserActivity;
 import com.example.thanh.model.FoodItem;
 import com.example.thanh.R;
 import com.squareup.picasso.Picasso;
@@ -44,6 +45,7 @@ public class FoodListAdapter extends ArrayAdapter<FoodItem> {
 //                .resize(567, 499)
                 .resize(52, 37)
                 .into(imageView);
+
         TextView foodIdTextView = view.findViewById(R.id.text_id);
         TextView foodNameTextView = view.findViewById(R.id.text_name);
 
@@ -58,7 +60,25 @@ public class FoodListAdapter extends ArrayAdapter<FoodItem> {
 //        foodNutritionTextView.setText(foodItem.getNutrition());
 
         foodKcalTextView.setText(foodItem.getKcal() + " Calories");
-
+        String foodName = foodItem.getName();
+        Integer foodId = foodItem.get_id();
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickListener != null) {
+                    clickListener.onFoodClick(foodName, foodId);
+                }
+            }
+        });
         return view;
+    }
+
+    public interface OnFoodClickListener {
+        void onFoodClick(String foodName, int foodId);
+    }
+    private OnFoodClickListener clickListener;
+
+    public void setOnFoodClickListener(OnFoodClickListener listener) {
+        this.clickListener = listener;
     }
 }

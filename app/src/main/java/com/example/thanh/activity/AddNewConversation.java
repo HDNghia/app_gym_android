@@ -33,9 +33,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class AddNewConversation extends AppCompatActivity implements PartnerAdapter.OnPartnerClickListener {
-    private EditText userIdEditText;
-    private EditText partnerIdEditText;
-    private EditText lastActiveEditText;
+//    private EditText userIdEditText;
+    private EditText partnerName;
+    private Integer PartnerId;
+//    private EditText lastActiveEditText;
     private EditText nicknameEditText;
     private Button addConversationButton;
     private List<User> PartnerList;
@@ -59,10 +60,10 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
         });
 
         // Ánh xạ các thành phần UI
-        userIdEditText = findViewById(R.id.userIdEditText);
-        partnerIdEditText = findViewById(R.id.partnerIdEditText);
+//        userIdEditText = findViewById(R.id.userIdEditText);
+        partnerName = findViewById(R.id.partnerIdEditText);
 //        isGroupConverCheckBox = findViewById(R.id.isGroupConverCheckBox);
-        lastActiveEditText = findViewById(R.id.lastActiveEditText);
+//        lastActiveEditText = findViewById(R.id.lastActiveEditText);
         nicknameEditText = findViewById(R.id.nicknameEditText);
         addConversationButton = findViewById(R.id.addConversationButton);
         listPartner = findViewById(R.id.listPartner);
@@ -72,7 +73,7 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
         // Khởi tạo ApiService
         apiService = retrofit.create(ApiService.class);
 
-        partnerIdEditText.addTextChangedListener(new TextWatcher() {
+        partnerName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // Không cần thực hiện hành động gì trước khi văn bản thay đổi
@@ -81,10 +82,10 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Thực hiện hành động khi văn bản thay đổi
-                if(partnerIdEditText.getText().toString().length() != 0){
+                if(partnerName.getText().toString().length() != 0){
 //                    Log.d("bug", partnerIdEditText.getText().toString());
                     listPartner.setVisibility(View.VISIBLE);
-                    fetchPartner(apiService, partnerIdEditText.getText().toString());
+                    fetchPartner(apiService, partnerName.getText().toString());
                 }else{
                     listPartner.setVisibility(View.GONE);
 //                    getConversation(apiService, conversationId);
@@ -108,9 +109,6 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
 
                 // Thực hiện xử lý thêm cuộc trò chuyện
                 addConversation(apiService);
-
-                Intent intent = new Intent(AddNewConversation.this, conversation_user_gets.class);
-                startActivity(intent);
             }
         });
     }
@@ -143,17 +141,17 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
     private void addConversation(ApiService apiService) {
         // Gọi API hoặc thực hiện các thao tác để thêm cuộc trò chuyện vào hệ thống
         // ...
-        int userId = Integer.parseInt(userIdEditText.getText().toString());
-        int partnerId = Integer.parseInt(partnerIdEditText.getText().toString());
+//        int userId = Integer.parseInt(userIdEditText.getText().toString());
+//        int partnerId = PartnerId;
 //        boolean isGroupConver = isGroupConverCheckBox.isChecked();
-        int lastActive = Integer.parseInt(lastActiveEditText.getText().toString());
+//        int lastActive = Integer.parseInt(lastActiveEditText.getText().toString());
         String nickname = nicknameEditText.getText().toString();
 
         Conversation conversation = new Conversation();
-        conversation.setUserId(userId);
-        conversation.setPartnerId(partnerId);
+        conversation.setUserId(1);
+        conversation.setPartnerId(PartnerId);
 //        conversation.setGroupConver(isGroupConver);
-        conversation.setLastActive(lastActive);
+        conversation.setLastActive(1);
         conversation.setNickname(nickname);
 
         // Gửi yêu cầu POST
@@ -168,6 +166,8 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
                     Conversation postedConversation = response.body();
 //                    Log.d("bug", String.valueOf(new Gson().toJson(postedFoodUser)));
                     Toast.makeText(AddNewConversation.this, "Post Conversation successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddNewConversation.this, conversation_user_gets.class);
+                    startActivity(intent);
 //                    }
                 } else {
                     // Xử lý lỗi khi gửi yêu cầu POST
@@ -182,11 +182,12 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
         });
     }
     @Override
-    public void onPartnerClick(int partnerId, int userId) {
+    public void onPartnerClick(String Name, int partnerId) {
         // Xử lý sự kiện khi người dùng nhấp vào một cuộc trò chuyện
 //       Log.d("bug", String.valueOf(partnerId));
-        Toast.makeText(AddNewConversation.this, String.valueOf(partnerId), Toast.LENGTH_SHORT).show();
-        partnerIdEditText.setText(String.valueOf(partnerId));
+        PartnerId = partnerId;
+        Toast.makeText(AddNewConversation.this, String.valueOf(Name), Toast.LENGTH_SHORT).show();
+        partnerName.setText(Name);
         listPartner.setVisibility(View.GONE);
     }
 }

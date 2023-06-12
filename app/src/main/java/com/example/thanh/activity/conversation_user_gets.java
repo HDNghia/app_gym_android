@@ -98,7 +98,6 @@ public class conversation_user_gets extends NavActivity implements ConversationA
         addNewPartner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(conversation_user_gets.this, "Vo ne", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(conversation_user_gets.this, AddNewConversation.class);
                 startActivity(intent);
             }

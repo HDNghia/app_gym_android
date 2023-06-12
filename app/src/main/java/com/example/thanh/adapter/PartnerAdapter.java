@@ -49,14 +49,15 @@ public class PartnerAdapter extends ArrayAdapter<User> {
 //        timestampTextView.setText(String.valueOf(conversation.getLastActive() + "s"));
 //        LastMessage.setText(conversation.getMessage());
 
-        final int partnerId = partner.get_id();
+        final String partnerName = partner.getFirstname();
+        final Integer partnerId = partner.get_id();
         final int userId = 1;
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (clickListener != null) {
-                    clickListener.onPartnerClick(partnerId, userId);
+                    clickListener.onPartnerClick(partnerName, partnerId);
                 }
             }
         });
@@ -65,7 +66,7 @@ public class PartnerAdapter extends ArrayAdapter<User> {
     }
 
     public interface OnPartnerClickListener {
-        void onPartnerClick(int partnerId, int userId);
+        void onPartnerClick(String partnerName, int partnerId);
     }
     private OnPartnerClickListener clickListener;
 
