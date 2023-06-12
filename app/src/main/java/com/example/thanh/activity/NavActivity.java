@@ -74,6 +74,10 @@ public abstract class NavActivity extends AppCompatActivity implements Navigatio
                 Intent homeIntent = new Intent(this, post_user_gets.class);
                 startActivity(homeIntent);
                 break;
+            case R.id.nav_trainercourse:
+                Intent trainerIntent = new Intent(this, course_trainer_get.class);
+                startActivity(trainerIntent);
+                break;
             default:
                 break;
         }

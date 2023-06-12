@@ -8,4 +8,15 @@
         <item>afternoon</item>
         <item>dinner</item>
     </string-array>
+    <string-array name="service_types">
+        <item>Thể hình</item>
+        <item>Yoga</item>
+        <item>Bóng đá</item>
+        <item>Bơi lội</item>
+    </string-array>
+    <string-array name="course_status">
+        <item>Chưa bắt đầu</item>
+        <item>Đang diễn ra</item>
+        <item>Đã hoàn thành</item>
+    </string-array>
 </resources>

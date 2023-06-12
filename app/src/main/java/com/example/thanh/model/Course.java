@@ -114,6 +114,25 @@ public class Course {
         return status;
     }
 
+    public String getStringStatus() {
+        String statusString;
+        switch (status) {
+            case 0:
+                statusString = "Chưa bắt đầu";
+                break;
+            case 1:
+                statusString = "Đang diễn ra";
+                break;
+            case 2:
+                statusString = "Hoàn thành";
+                break;
+            default:
+                statusString = "Không xác định";
+                break;
+        }
+        return statusString;
+    }
+
     public void setStatus(int status) {
         this.status = status;
     }
@@ -168,6 +187,25 @@ public class Course {
 
     public int getServiceTypeId() {
         return serviceTypeId;
+    }
+
+    public String getServiceTypeString() {
+        String typeString;
+        switch (status) {
+            case 0:
+                typeString = "Thể hình";
+                break;
+            case 1:
+                typeString = "Yoga";
+                break;
+            case 2:
+                typeString = "Bóng đá";
+                break;
+            default:
+                typeString = "Bơi lội";
+                break;
+        }
+        return typeString;
     }
 
     public void setServiceTypeId(int serviceTypeId) {
