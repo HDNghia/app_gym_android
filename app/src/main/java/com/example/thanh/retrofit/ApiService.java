@@ -26,6 +26,8 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
+    @GET("v1/user/{id}")
+    Call<User> getUser(@Path("id") int id);
 
     @GET("v1/user")
     Call<List<User>> getUserByName(@Query("name") String name);
