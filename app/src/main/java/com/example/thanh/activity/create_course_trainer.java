@@ -34,6 +34,7 @@ import androidx.core.content.ContextCompat;
 import com.example.thanh.R;
 import com.example.thanh.model.Course;
 import com.example.thanh.retrofit.ApiService;
+import com.example.thanh.retrofit.RetrofitClient;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -68,10 +69,6 @@ public class create_course_trainer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_trainer_post);
         // Attach
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://puddle-spotless-straw.glitch.me/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
         ImageButton btnGoBack = findViewById(R.id.btnBack);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +78,7 @@ public class create_course_trainer extends AppCompatActivity {
             }
         });
         // Tạo đối tượng CourseApi
-        courseApi = retrofit.create(ApiService.class);
+
         // Initialize views
         titleEditText = findViewById(R.id.title_edit_text);
         startDateEditText = findViewById(R.id.start_date_edit_text);
@@ -254,7 +251,7 @@ public class create_course_trainer extends AppCompatActivity {
 
         // In ra giá trị JSON của đối tượng course
         Log.d("Course JSON", courseJson);
-
+        courseApi = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         // Gửi yêu cầu POST để tạo khóa học
         Call<Course> call = courseApi.createCourse(course);
         call.enqueue(new Callback<Course>() {
