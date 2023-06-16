@@ -7,12 +7,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.thanh.R;
 import com.example.thanh.model.User;
 import com.example.thanh.retrofit.ApiService;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +34,7 @@ public class profile_user_get  extends NavActivity{
         return R.id.nav_home;
     }
 
+    private DatabaseHelper databaseHelper;
     private ImageView btnEditFirstName;
     private EditText firstNameEditText;
     private ImageView avatarImageView;
@@ -50,6 +55,7 @@ public class profile_user_get  extends NavActivity{
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.profile_user_get);
 
+        databaseHelper = new DatabaseHelper(this);
 
         btnEditFirstName = findViewById(R.id.btnEditFirstName);
         firstNameEditText = findViewById(R.id.firstNameEditText);
@@ -65,9 +71,10 @@ public class profile_user_get  extends NavActivity{
         phoneTextView = findViewById(R.id.phoneTextView);
         addressTextView = findViewById(R.id.addressTextViewt);
 
-//        avatarImageView = findViewById(R.id.foodImageView);
-//        ImageView imageView = view.findViewById(R.id.userImageView);
-//        String imageUrl = foodItem.getAttachment();
+        List<User> ul = databaseHelper.getAllUser();
+
+//        Toast.makeText(this, , Toast.LENGTH_SHORT).show();
+
         String imageUrl = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80";
 
         Picasso.get()

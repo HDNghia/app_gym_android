@@ -78,16 +78,6 @@ public class create_course_trainer extends AppCompatActivity {
         });
         // Tạo đối tượng CourseApi
         courseApi = retrofit.create(ApiService.class);
-//        imageView = findViewById(R.id.attachmentImageView);
-//
-//        buttonAttachImage = findViewById(R.id.attachImageButton);
-//        buttonAttachImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                attachImage();
-//            }
-//        });
-        // Initialize views
         titleEditText = findViewById(R.id.title_edit_text);
         startDateEditText = findViewById(R.id.start_date_edit_text);
         endDateEditText = findViewById(R.id.end_date_edit_text);

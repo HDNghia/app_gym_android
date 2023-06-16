@@ -1,29 +1,32 @@
 package com.example.thanh.model;
 
 public class User {
-    private int age;
-    private int height;
-    private int weight;
-    private int workingLevel;
-    private String avt;
-    private String coverId;
-    private int wallet;
-    private boolean isBan;
-    private int status;
-    private int lastActive;
-    private String bankAccount;
-    private String bankName;
-    private String description1;
-    private String description2;
-    private String specialize;
-    private int _id;
-    private String firstname;
-    private String lastname;
-    private String gender;
-    private String email;
-    private String phonenumber;
-    private String address;
-    private int __v;
+    private int age = 0;
+    private int height = 0;
+    private int weight = 0;
+    private int workingLevel = 0;
+    private String avt = "";
+    private String coverId = "";
+    private int wallet = 0;
+    private boolean isBan = false;
+    private int status = 1;
+    private int lastActive = 0;
+    private String bankAccount = "";
+    private String bankName = "";
+    private String description1 = "";
+    private String description2 = "";
+    private String specialize = "";
+    private int _id = 0;
+    private String firstname = "";
+    private String lastname = "";
+    private String gender = "";
+    private String email = "";
+    private String phonenumber = "";
+    private int role = 1;
+
+    private String password = "";
+    private String address = "";
+    private int __v = 0;
 
     public User() {
     }
@@ -155,6 +158,13 @@ public class User {
     public void set_id(int _id) {
         this._id = _id;
     }
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 
     public String getFirstname() {
         return firstname;
@@ -202,6 +212,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int get__v() {

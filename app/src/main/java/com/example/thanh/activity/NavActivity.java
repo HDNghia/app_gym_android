@@ -77,9 +77,15 @@ public abstract class NavActivity extends AppCompatActivity implements Navigatio
             case R.id.nav_profile:
                 Intent profileIntent = new Intent(this, profile_user_get.class);
                 startActivity(profileIntent);
+                break;
             case R.id.nav_trainercourse:
                 Intent trainerIntent = new Intent(this, course_trainer_get.class);
                 startActivity(trainerIntent);
+                break;
+            case R.id.nav_logout:
+                Intent login = new Intent(this, login.class);
+                startActivity(login);
+                finish();
                 break;
             default:
                 break;

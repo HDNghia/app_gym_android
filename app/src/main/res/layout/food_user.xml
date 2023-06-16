@@ -117,8 +117,8 @@
 
                 <ImageView
                     android:id="@+id/btn_breakfast"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/rounded_corner"
                     android:scaleType="center"
@@ -140,8 +140,8 @@
 
                 <ImageView
                     android:id="@+id/btn_lunch"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/rounded_corner"
                     android:scaleType="center"
@@ -163,8 +163,8 @@
 
                 <ImageView
                     android:id="@+id/btn_afternoon"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/rounded_corner"
                     android:scaleType="center"
@@ -186,8 +186,8 @@
 
                 <ImageView
                     android:id="@+id/btn_dinner"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/rounded_corner"
                     android:scaleType="center"
