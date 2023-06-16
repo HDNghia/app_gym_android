@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.thanh.activity.DatabaseHelper;
+import com.example.thanh.model.User;
 import com.squareup.picasso.Picasso;
 
 import com.example.thanh.model.Post;
@@ -18,6 +21,8 @@ import java.util.List;
 public class PostItemAdapter extends ArrayAdapter<Post> {
     private Context context;
     private List<Post> postItems;
+    private DatabaseHelper databaseHelper;
+    private List<User> ul;
 
     public PostItemAdapter(Context context, List<Post> postItems) {
         super(context, 0, postItems);
@@ -56,7 +61,7 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
 
         titleTextView.setText(postItem.getCaption());
         commentCountTextView.setText(String.valueOf(postItem.getCountComment()));
-        nameTextView.setText(postItem.getUserInfo().getLastName());
+        nameTextView.setText(postItem.getUserInfo().getLastName() + " " + postItem.getUserInfo().getFirstName());
         LikeCountTextView.setText(String.valueOf(postItem.getCountlike()));
 
         ImageView commentImageView = view.findViewById(R.id.commentImageView);
@@ -68,14 +73,14 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
             likeImageView.setImageResource(R.drawable.ic_baseline_recommend_24);
         }
 
+
         final int postId = postItem.getId();
-        final int userId = postItem.getOwnerId();
 
         commentImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (clickListener != null) {
-                    clickListener.onCommentClick(postId, userId);
+                    clickListener.onCommentClick(postId);
                 }
             }
         });
@@ -84,7 +89,7 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
             public void onClick(View view) {
                 if (clickListener1 != null) {
 //                    Log.d("bug","voo like apdater");
-                    clickListener1.onLikeClick(postId, userId);
+                    clickListener1.onLikeClick(postId);
                 }
             }
         });
@@ -92,7 +97,7 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
         return view;
     }
     public interface OnCommentClickListener {
-        void onCommentClick(int postId, int userId);
+        void onCommentClick(int postId);
     }
     private OnCommentClickListener clickListener;
 
@@ -101,7 +106,7 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
     }
 
     public interface OnLikeClickListener {
-        void onLikeClick(int postId,int userId);
+        void onLikeClick(int postId);
     }
     private OnLikeClickListener clickListener1;
 

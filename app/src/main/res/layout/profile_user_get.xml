@@ -47,7 +47,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/backContainer"
                     android:layout_width="match_parent"
@@ -124,45 +123,82 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/nameTextView"
+                            android:id="@+id/emailTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="nameTextView"
+                            android:text="emailTextView"
                             android:textAlignment="center"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/bankName"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="bankName"
-                            android:textSize="16sp"
-                            android:textStyle="bold|italic" />
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Bank Name: "
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/bankName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="bankName"/>
+                        </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/BankNumber"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="BankNumber" />
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:layout_marginTop="8dp"
+                                android:textStyle="bold"
+                                android:text="Level: "/>
+                            <TextView
+                                android:id="@+id/workingLevel"
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="8dp"
+                                android:layout_height="wrap_content"
+                                android:text="workingLevel" />
+                        </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/workingLevel"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="workingLevel" />
-
-                        <TextView
-                            android:id="@+id/walletTextView"
-                            android:layout_width="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:layout_marginTop="8dp"
+                                android:textStyle="bold"
+                                android:text="Wallet: "/>
+                            <TextView
+                                android:id="@+id/walletTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="walletTextView"
+                                 />
+                        </LinearLayout>
+                        <Button
+                            android:id="@+id/withDraw"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="walletTextView"
-                            android:textSize="16sp"
-                            android:textStyle="bold|italic" />
+                            android:visibility="gone"
+                            android:text="WithDraw"/>
+                        <Button
+                            android:id="@+id/reCharGer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:text="RECHARGER"/>
 
                     </LinearLayout>
 
@@ -184,175 +220,97 @@
                             android:text="Information"
                             android:textSize="20sp"
                             android:textStyle="bold" />
-                        <LinearLayout
+                        <ScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            >
+                            android:layout_height="match_parent">
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:layout_marginBottom="8dp"
-                                        android:textSize="16sp"
-                                        android:text="Name:    " />
-                                    <TextView
-                                        android:id="@+id/firstNameTextView"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="16sp"
-                                        android:layout_marginLeft="8dp"
-                                        android:text="firstNameTextView" />
-                                    <EditText
-                                        android:id="@+id/firstNameEditText"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="16sp"
-                                        android:layout_marginLeft="8dp"
-                                        android:text="firstNameEditText"
-                                        android:visibility="gone"/>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:textSize="16sp"
-                                        android:layout_marginBottom="8dp"
-                                        android:text="Gender: " />
-                                    <TextView
-                                        android:id="@+id/GenderTextView"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="8dp"
-                                        android:textSize="16sp"
-                                        android:text="GenderTextView" />
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:textSize="16sp"
-                                        android:layout_marginBottom="8dp"
-                                        android:text="Email:     " />
-                                    <TextView
-                                        android:id="@+id/emailTextView"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="8dp"
-                                        android:textSize="16sp"
-                                        android:text="emailTextView" />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:layout_marginBottom="8dp"
-                                        android:textSize="16sp"
-                                        android:text="Phone:   " />
-
-                                    <TextView
-                                        android:id="@+id/phoneTextView"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="8dp"
-                                        android:textSize="16sp"
-                                        android:text="phoneTextView" />
-
-
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:layout_marginBottom="4dp"
-                                        android:textSize="16sp"
-                                        android:text="Address: " />
-                                    <TextView
-                                        android:id="@+id/addressTextViewt"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="16sp"
-                                        android:text="addressTextView" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
+                                android:padding="16dp">
+                                <TextView
+                                    android:id="@+id/firstNameTextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="First Name" />
 
-                                android:gravity="end">
-                                <ImageView
-                                    android:id="@+id/btnEditFirstName"
+                                <EditText
+                                    android:id="@+id/firstNameEditText"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:layout_marginLeft="8dp"
-                                    android:layout_marginBottom="6dp"
-                                    android:background="@drawable/ic_baseline_edit_24" />
-                                <ImageView
-                                    android:id="@+id/btnEditGender"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:layout_marginBottom="6dp"
-                                    android:layout_marginLeft="8dp"
-                                    android:background="@drawable/ic_baseline_edit_24" />
+                                    android:hint="Enter your first name" />
 
-                                <ImageView
-                                    android:id="@+id/btnEditEmail"
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:id="@+id/LastNameTextView"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="8dp"
-                                    android:background="@drawable/ic_baseline_edit_24"
-                                    android:layout_marginBottom="6dp"
-                                    android:textSize="16sp" />
+                                    android:text="Last Name" />
 
-                                <ImageView
-                                    android:id="@+id/btnEditPhone"
+                                <EditText
+                                    android:id="@+id/LastNameEditText"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="8dp"
-                                    android:layout_marginBottom="6dp"
-                                    android:background="@drawable/ic_baseline_edit_24"
-                                    android:textSize="16sp" />
-                                <ImageView
-                                    android:id="@+id/btnEditAddress"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:layout_marginBottom="8dp"
-                                    android:layout_marginLeft="6dp"
-                                    android:background="@drawable/ic_baseline_edit_24" />
+                                    android:hint="Enter your last name" />
 
+                                <TextView
+                                    android:id="@+id/genderTextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Gender" />
+
+                                <EditText
+                                    android:id="@+id/genderEditText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Enter your gender" />
+
+<!--                                <TextView-->
+<!--                                    android:id="@+id/emailTextView"-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:text="Email" />-->
+
+<!--                                <EditText-->
+<!--                                    android:id="@+id/emailEditText"-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:hint="Enter your email" />-->
+
+                                <TextView
+                                    android:id="@+id/phoneTextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Phone" />
+
+                                <EditText
+                                    android:id="@+id/phoneEditText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Enter your phone number" />
+
+                                <TextView
+                                    android:id="@+id/addressTextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Address" />
+
+                                <EditText
+                                    android:id="@+id/addressEditText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Enter your address" />
+
+                                <Button
+                                    android:id="@+id/btnUpdate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Update"
+                                    android:layout_gravity="center"
+                                     />
                             </LinearLayout>
-                        </LinearLayout>
+
+                        </ScrollView>
 
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

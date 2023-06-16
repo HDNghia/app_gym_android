@@ -28,10 +28,16 @@ import retrofit2.http.Query;
 public interface ApiService {
     @GET("v1/user/{id}")
     Call<User> getUser(@Path("id") int id);
+
+    @PUT("v1/user/{id}")
+    Call<Void> updateUser(@Path("id") int id, @Body User user);
+
     @POST("v1/user")
     Call<User> createUser(@Body User requestData);
+
     @POST("v1/user/login")
     Call<User> logIn(@Body User requestData);
+
     @GET("v1/user")
     Call<List<User>> getUserByName(@Query("name") String name);
 

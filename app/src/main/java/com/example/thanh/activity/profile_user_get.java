@@ -1,8 +1,12 @@
 package com.example.thanh.activity;
 import static com.example.thanh.retrofit.RetrofitClient.getRetrofitInstance;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,21 +39,23 @@ public class profile_user_get  extends NavActivity{
     }
 
     private DatabaseHelper databaseHelper;
-    private ImageView btnEditFirstName;
     private EditText firstNameEditText;
+    private EditText LastNameEditText;
     private ImageView avatarImageView;
-    private TextView nameTextView;
     private TextView bankNameTextView;
-    private TextView bankNumberTextView;
     private TextView workingLevelTextView;
     private TextView walletTextView;
-    private TextView firstNameTextView;
-    private TextView genderTextView;
+    private EditText genderEditText;
     private TextView emailTextView;
-    private TextView phoneTextView;
-    private TextView addressTextView;
+    private EditText phoneEditText;
+    private EditText addressEditText;
     private ApiService apiService;
+    private Button btnUpdate;
+    private Button reCharGer;
+    private Button withDraw;
+    private List<User> ul;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,23 +63,28 @@ public class profile_user_get  extends NavActivity{
 
         databaseHelper = new DatabaseHelper(this);
 
-        btnEditFirstName = findViewById(R.id.btnEditFirstName);
-        firstNameEditText = findViewById(R.id.firstNameEditText);
+        btnUpdate = findViewById(R.id.btnUpdate);
         avatarImageView = findViewById(R.id.imageViewAva);
-        nameTextView = findViewById(R.id.nameTextView);
         bankNameTextView = findViewById(R.id.bankName);
-        bankNumberTextView = findViewById(R.id.BankNumber);
         workingLevelTextView = findViewById(R.id.workingLevel);
         walletTextView = findViewById(R.id.walletTextView);
-        firstNameTextView = findViewById(R.id.firstNameTextView);
-        genderTextView = findViewById(R.id.GenderTextView);
+        firstNameEditText = findViewById(R.id.firstNameEditText);
+        genderEditText = findViewById(R.id.genderEditText);
         emailTextView = findViewById(R.id.emailTextView);
-        phoneTextView = findViewById(R.id.phoneTextView);
-        addressTextView = findViewById(R.id.addressTextViewt);
+        phoneEditText = findViewById(R.id.phoneEditText);
+        addressEditText = findViewById(R.id.addressEditText);
+        LastNameEditText = findViewById(R.id.LastNameEditText);
+        reCharGer = findViewById(R.id.reCharGer);
+        withDraw = findViewById(R.id.withDraw);
 
-        List<User> ul = databaseHelper.getAllUser();
+        ul = databaseHelper.getAllUser();
+        if(ul.get(0).getRole() == 1){
+            reCharGer.setVisibility(View.VISIBLE);
 
-//        Toast.makeText(this, , Toast.LENGTH_SHORT).show();
+        }
+        if(ul.get(0).getRole() == 2){
+            withDraw.setVisibility(View.VISIBLE);
+        }
 
         String imageUrl = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80";
 
@@ -92,40 +103,46 @@ public class profile_user_get  extends NavActivity{
 
         fetchApi();
 
-        btnEditFirstName.setOnClickListener(new View.OnClickListener() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firstNameEditText.setVisibility(View.VISIBLE);
-                firstNameTextView.setVisibility(View.GONE);
+                updateApi();
+            }
+        });
+        reCharGer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(profile_user_get.this, Invoice_user_gets.class);
+                startActivity(intent);
             }
         });
     }
 
     // Phương thức giả lập dữ liệu đối tượng ProfileUserGet (thay thế bằng dữ liệu thật)
     private void fetchApi() {
+        Log.d("bug", "voo");
 
 //        User profile = new User();
 
         // Gọi API để lấy thông tin người dùng
-        Call<User> call = apiService.getUser(1);
+        Call<User> call = apiService.getUser(ul.get(0).get_id());
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     // Dữ liệu người dùng nhận được từ API
                     User profile = response.body();
-
+                    Log.d("bug", "voo1");
                     // Truy cập các thuộc tính
-                    nameTextView.setText(profile.getFirstname() + " " + profile.getLastname());
                     bankNameTextView.setText(profile.getBankName());
-                    bankNumberTextView.setText(profile.getBankAccount());
                     workingLevelTextView.setText(String.valueOf(profile.getWorkingLevel()));
                     walletTextView.setText(String.valueOf(profile.getWallet()));
-                    firstNameTextView.setText(profile.getFirstname());
-                    genderTextView.setText(profile.getGender());
+                    firstNameEditText.setText(profile.getFirstname());
+                    genderEditText.setText(profile.getGender());
                     emailTextView.setText(profile.getEmail());
-                    phoneTextView.setText(profile.getPhonenumber());
-                    addressTextView.setText(profile.getAddress());
+                    phoneEditText.setText(profile.getPhonenumber());
+                    addressEditText.setText(profile.getAddress());
+                    LastNameEditText.setText(profile.getLastname());
 
                 } else {
                     System.out.println("Failed to get user data. Error: " + response.message());
@@ -139,4 +156,51 @@ public class profile_user_get  extends NavActivity{
         });
 
     }
+    private void updateApi(){
+        // Tạo đối tượng User với các thuộc tính được chỉ định
+        User user = new User();
+        user.setAge(ul.get(0).getAge());
+        user.setHeight(ul.get(0).getHeight());
+        user.setWeight(ul.get(0).getWeight());
+        user.setWorkingLevel(ul.get(0).getWorkingLevel());
+        user.setAvt(ul.get(0).getAvt());
+        user.setCoverId(ul.get(0).getCoverId());
+        user.setWallet(ul.get(0).getWallet());
+//        user.setIsBan(false);
+        user.setStatus(ul.get(0).getStatus());
+        user.setLastActive(ul.get(0).getLastActive());
+        user.setBankAccount(ul.get(0).getBankAccount());
+        user.setBankName(ul.get(0).getBankName());
+        user.setDescription1(ul.get(0).getDescription1());
+        user.setDescription2(ul.get(0).getDescription2());
+        user.setSpecialize(ul.get(0).getSpecialize());
+        user.set_id(ul.get(0).get_id());
+        user.setFirstname(String.valueOf(firstNameEditText.getText()));
+        user.setLastname(String.valueOf(LastNameEditText.getText()));
+        user.setGender(String.valueOf(genderEditText.getText()));
+        user.setEmail(ul.get(0).getEmail());
+        user.setPhonenumber(String.valueOf(phoneEditText.getText()));
+        user.setAddress(String.valueOf(addressEditText.getText()));
+        user.set__v(0);
+
+        // Gửi yêu cầu PUT API
+        Call<Void> call = apiService.updateUser(ul.get(0).get_id(), user);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(profile_user_get.this, "Update SuccessFully", Toast.LENGTH_SHORT).show();
+                    // Xử lý thành công
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // Xử lý lỗi
+            }
+        });
+    }
+
 }

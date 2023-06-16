@@ -23,6 +23,7 @@ import com.example.thanh.R;
 import com.example.thanh.adapter.PostItemAdapter;
 import com.example.thanh.model.LikeRequest;
 import com.example.thanh.model.Post;
+import com.example.thanh.model.User;
 import com.example.thanh.retrofit.ApiService;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,6 +59,7 @@ public class post_user_gets extends NavActivity implements PostItemAdapter.OnCom
     }
 
     private ListView feedsListView;
+    private DatabaseHelper databaseHelper;
 //    private ArrayAdapter<String> feedsAdapter;
     private PostItemAdapter adapter;
     private List<Post> PostList;
@@ -71,6 +73,7 @@ public class post_user_gets extends NavActivity implements PostItemAdapter.OnCom
     private StorageReference storageReference;
     private ProgressDialog progressDialog;
     private ImageView firebaseimage;
+    private List<User> ul;
 
 
     @SuppressLint("MissingInflatedId")
@@ -92,6 +95,8 @@ public class post_user_gets extends NavActivity implements PostItemAdapter.OnCom
 
         // Khởi tạo ApiService
         apiService = retrofit.create(ApiService.class);
+        databaseHelper = new DatabaseHelper(this);
+        ul = databaseHelper.getAllUser();
 
         getAllPost(apiService);
         btnPost.setOnClickListener(new View.OnClickListener() {
@@ -218,7 +223,7 @@ public class post_user_gets extends NavActivity implements PostItemAdapter.OnCom
         // Tạo object Message
 
         Post post = new Post();
-        post.setOwnerId(1);
+        post.setOwnerId(ul.get(0).get_id());
         post.setCaption(postt);
         post.setCreatedDate(1);
         post.setAttachmentId1(String.valueOf(downloadUri));
@@ -251,18 +256,18 @@ public class post_user_gets extends NavActivity implements PostItemAdapter.OnCom
 
 
     @Override
-    public void onCommentClick(int postId, int userId) {
+    public void onCommentClick(int postId) {
         // Xử lý sự kiện khi người dùng nhấp vào một cuộc trò chuyện
         Intent intent = new Intent(post_user_gets.this, CommentActivity.class);
 //         Khởi chạy Intent
         intent.putExtra("post_id", postId);
-        intent.putExtra("user_id", userId);
+        intent.putExtra("user_id",  ul.get(0).get_id());
         startActivity(intent);
     }
 
     @Override
-    public void onLikeClick(int postId, int userId) {
-        LikeRequest likeRequest = new LikeRequest(postId, userId);
+    public void onLikeClick(int postId) {
+        LikeRequest likeRequest = new LikeRequest(postId, ul.get(0).get_id());
 
         // Gửi POST request
         Call<Void> call = apiService.likePost(likeRequest);
