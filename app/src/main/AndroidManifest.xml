@@ -55,6 +55,9 @@
             android:name=".activity.course_user_gets"
             android:exported="false" />
         <activity
+            android:name=".activity.profile_user_get"
+            android:exported="false" />
+        <activity
             android:name=".activity.post_user_gets"
             android:exported="true">
             <intent-filter>

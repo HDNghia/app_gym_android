@@ -5,7 +5,7 @@ public class User {
     private int height;
     private int weight;
     private int workingLevel;
-    private String avtId;
+    private String avt;
     private String coverId;
     private int wallet;
     private boolean isBan;
@@ -13,6 +13,9 @@ public class User {
     private int lastActive;
     private String bankAccount;
     private String bankName;
+    private String description1;
+    private String description2;
+    private String specialize;
     private int _id;
     private String firstname;
     private String lastname;
@@ -22,37 +25,8 @@ public class User {
     private String address;
     private int __v;
 
-    // Constructors
     public User() {
     }
-
-    public User(int age, int height, int weight, int workingLevel, String avtId, String coverId, int wallet,
-                boolean isBan, int status, int lastActive, String bankAccount, String bankName, int _id,
-                String firstname, String lastname, String gender, String email, String phonenumber,
-                String address, int __v) {
-        this.age = age;
-        this.height = height;
-        this.weight = weight;
-        this.workingLevel = workingLevel;
-        this.avtId = avtId;
-        this.coverId = coverId;
-        this.wallet = wallet;
-        this.isBan = isBan;
-        this.status = status;
-        this.lastActive = lastActive;
-        this.bankAccount = bankAccount;
-        this.bankName = bankName;
-        this._id = _id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.gender = gender;
-        this.email = email;
-        this.phonenumber = phonenumber;
-        this.address = address;
-        this.__v = __v;
-    }
-
-    // Getters and Setters
 
     public int getAge() {
         return age;
@@ -86,12 +60,12 @@ public class User {
         this.workingLevel = workingLevel;
     }
 
-    public String getAvtId() {
-        return avtId;
+    public String getAvt() {
+        return avt;
     }
 
-    public void setAvtId(String avtId) {
-        this.avtId = avtId;
+    public void setAvt(String avt) {
+        this.avt = avt;
     }
 
     public String getCoverId() {
@@ -148,6 +122,30 @@ public class User {
 
     public void setBankName(String bankName) {
         this.bankName = bankName;
+    }
+
+    public String getDescription1() {
+        return description1;
+    }
+
+    public void setDescription1(String description1) {
+        this.description1 = description1;
+    }
+
+    public String getDescription2() {
+        return description2;
+    }
+
+    public void setDescription2(String description2) {
+        this.description2 = description2;
+    }
+
+    public String getSpecialize() {
+        return specialize;
+    }
+
+    public void setSpecialize(String specialize) {
+        this.specialize = specialize;
     }
 
     public int get_id() {
