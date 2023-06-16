@@ -17,49 +17,83 @@
         tools:targetApi="31">
         <activity
             android:name=".activity.course_user_calendar"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Get Course Calendar After Signed"/>
         <activity
             android:name=".activity.course_user_signed_get"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Get Signed Courses Detail"/>
         <activity
             android:name=".activity.course_user_signed_gets"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Gets Signed Courses"/>
         <activity
             android:name=".activity.payment_user_post"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Pay For A Course"/>
         <activity
             android:name=".activity.course_user_get"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Get Course Detail"/>
         <activity
             android:name=".activity.message_user_get"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Gets All Message From Conversation"/>
         <activity
             android:name=".activity.food_user_gets"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Gets All Food"/>
         <activity
             android:name=".activity.AddNewFoodUserActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Create Food User"/>
         <activity
             android:name=".activity.AddNewFood"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Create Food"/>
         <activity
             android:name=".activity.AddNewConversation"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Create Conversation"/>
         <activity
             android:name=".activity.conversation_user_gets"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Gets All Conversation"/>
         <activity
             android:name=".activity.CommentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Gets All Comment In Post"/>
         <activity
             android:name=".activity.course_user_gets"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Gets All Course"/>
+        <activity
+            android:name=".activity.course_trainer_get"
+            android:exported="true"
+            android:label="Trainer Get Course"/>
+        <activity
+            android:name=".activity.create_course_trainer"
+            android:exported="false"
+            android:label="Trainer Create Course" />
+        <activity
+            android:name=".activity.course_delete_trainer"
+            android:exported="false"
+            android:label="Trainer Delete Course" />
+        <activity
+            android:name=".activity.course_trainer_details"
+            android:exported="false"
+            android:label="Trainer Get Course Details" />
+        <activity
+            android:name=".activity.update_course_trainer"
+            android:exported="false"
+            android:label="Trainer Update Course" />
         <activity
             android:name=".activity.profile_user_get"
             android:exported="false" />
         <activity
             android:name=".activity.post_user_gets"
-            android:exported="true">
+            android:exported="true"
+            android:label="New feed" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
