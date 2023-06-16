@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".activity.AddNewFoodUserActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/backContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_shape_round"
+            android:contentDescription="back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_back" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List Of Food"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ListView
+        android:id="@+id/listFood"
+        android:layout_width="374dp"
+        android:layout_height="333dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backContainer" />
+
+    <Button
+        android:id="@+id/AddFood"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/corner_button"
+        android:text="Add new food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listFood" />
+
+    <TextView
+        android:id="@+id/titleFoodUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:text="Add New Food User"
+        android:textColor="#70E83F"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/foodIdEditText"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/foodIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner_white"
+        android:hint="Food Name"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/sessionsSpinner"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--    <EditText-->
+<!--        android:id="@+id/userIdEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:layout_above="@+id/useDatetimeEditText"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:background="@drawable/rounded_corner_white"-->
+<!--        android:hint="User ID"-->
+<!--        android:padding="10dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/useDatetimeEditText"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/useDatetimeEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:layout_above="@+id/sessionsSpinner"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:background="@drawable/rounded_corner_white"-->
+<!--        android:hint="Use Datetime"-->
+<!--        android:padding="10dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/sessionsSpinner"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <Spinner
+        android:id="@+id/sessionsSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/sessionsSpinnerView"
+        android:layout_marginBottom="10dp"
+        android:entries="@array/Session_items"
+        android:paddingBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/sessionsSpinnerView"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/sessionsSpinnerView"
+        android:layout_width="372dp"
+        android:layout_height="2dp"
+        android:layout_above="@+id/AddNewFoodUser"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/AddNewFoodUser"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/AddNewFoodUser"
+        android:layout_width="118dp"
+        android:layout_height="44dp"
+        android:layout_alignStart="@+id/sessionsSpinner"
+        android:layout_alignEnd="@+id/sessionsSpinner"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="135dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/corner_button"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sessionsSpinner"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/sessionsSpinner" />
+</androidx.constraintlayout.widget.ConstraintLayout>

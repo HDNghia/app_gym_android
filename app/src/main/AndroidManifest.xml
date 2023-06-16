@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Thanh"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".activity.course_user_calendar"
+            android:exported="false"
+            android:label="User Get Course Calendar After Signed"/>
+        <activity
+            android:name=".activity.course_user_signed_get"
+            android:exported="false"
+            android:label="User Get Signed Courses Detail"/>
+        <activity
+            android:name=".activity.course_user_signed_gets"
+            android:exported="false"
+            android:label="User Gets Signed Courses"/>
+        <activity
+            android:name=".activity.payment_user_post"
+            android:exported="false"
+            android:label="User Pay For A Course"/>
+        <activity
+            android:name=".activity.course_user_get"
+            android:exported="false"
+            android:label="User Get Course Detail"/>
+        <activity
+            android:name=".activity.message_user_get"
+            android:exported="false"
+            android:label="User Gets All Message From Conversation"/>
+        <activity
+            android:name=".activity.food_user_gets"
+            android:exported="false"
+            android:label="User Gets All Food"/>
+        <activity
+            android:name=".activity.AddNewFoodUserActivity"
+            android:exported="false"
+            android:label="Create Food User"/>
+        <activity
+            android:name=".activity.AddNewFood"
+            android:exported="false"
+            android:label="Create Food"/>
+        <activity
+            android:name=".activity.AddNewConversation"
+            android:exported="false"
+            android:label="Create Conversation"/>
+        <activity
+            android:name=".activity.conversation_user_gets"
+            android:exported="false"
+            android:label="Gets All Conversation"/>
+        <activity
+            android:name=".activity.CommentActivity"
+            android:exported="false"
+            android:label="Gets All Comment In Post"/>
+        <activity
+            android:name=".activity.course_user_gets"
+            android:exported="false"
+            android:label="User Gets All Course"/>
+        <activity
+            android:name=".activity.course_trainer_get"
+            android:exported="true"
+            android:label="Trainer Get Course"/>
+        <activity
+            android:name=".activity.create_course_trainer"
+            android:exported="false"
+            android:label="Trainer Create Course" />
+        <activity
+            android:name=".activity.course_schedule_trainer_get"
+            android:exported="false"
+            android:label="Get Course Schedule by CourseId" />
+        <activity
+            android:name=".activity.course_delete_trainer"
+            android:exported="false"
+            android:label="Trainer Delete Course" />
+        <activity
+            android:name=".activity.course_trainer_details"
+            android:exported="false"
+            android:label="Trainer Get Course Details" />
+        <activity
+            android:name=".activity.update_course_trainer"
+            android:exported="false"
+            android:label="Trainer Update Course" />
+        <activity
+            android:name=".activity.profile_user_get"
+            android:exported="false" />
+        <activity
+            android:name=".activity.login"
+            android:exported="false" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
+        </activity>
+        <activity
+            android:name=".activity.register"
+            android:exported="false" />
+        <activity
+            android:name=".activity.forgotpassword"
+            android:exported="false" />
+        <activity
+            android:name=".activity.post_user_gets"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

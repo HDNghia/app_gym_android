@@ -1,0 +1,23 @@
+<!-- item_message.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/face_partner"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_baseline_tag_faces_24"
+        android:contentDescription="ten"/>
+        <TextView
+            android:id="@+id/nicknameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:textSize="16sp"/>
+</LinearLayout>

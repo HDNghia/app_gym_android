@@ -1,0 +1,5 @@
+<!-- button_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#91E384" /> <!-- Màu nền của Button -->
+    <corners android:radius="8dp" /> <!-- Độ cong góc của Button -->
+</shape>
