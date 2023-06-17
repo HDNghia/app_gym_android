@@ -48,6 +48,16 @@ public class Course {
     @SerializedName("__v")
     private int version;
 
+    public String getStringSchedule() {
+        return stringSchedule;
+    }
+
+    private String stringSchedule;
+
+    public void setStringSchedule(String stringSchedule) {
+        this.stringSchedule = stringSchedule;
+    }
+
     public Course(){
 
     }

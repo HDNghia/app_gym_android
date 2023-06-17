@@ -72,6 +72,10 @@
             android:exported="true"
             android:label="Courses"/>
         <activity
+            android:name=".activity.course_schedule_trainer_get"
+            android:exported="true"
+            android:label="Courses schedule"/>
+        <activity
             android:name=".activity.create_course_trainer"
             android:exported="false"
             android:label="Create Course" />
