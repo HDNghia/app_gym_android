@@ -45,7 +45,18 @@ public class course_schedule_trainer_get extends AppCompatActivity {
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         int courseId = getIntent().getIntExtra("id", -1);
         Log.d("CourseID", String.valueOf(courseId));
+        ImageButton btnGoBack = findViewById(R.id.btnBack);
 
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the button click event
+                Intent intent = new Intent(course_schedule_trainer_get.this, course_trainer_details.class);
+                intent.putExtra("id", courseId);
+                startActivity(intent);
+                finish();
+            }
+        });
         getCourseSchedulesByTrainerID(courseId);
     }
     public class GetCourseSchedule {

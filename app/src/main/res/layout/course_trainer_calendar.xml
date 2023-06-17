@@ -5,9 +5,8 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.course_user_gets"
-    tools:openDrawer="start"
-    android:fitsSystemWindows="true">
+    tools:context=".activity.course_user_calendar">
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -33,14 +32,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/backContainer"
+            android:id="@+id/contain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
 
             <ImageButton
                 android:id="@+id/btnBack"
@@ -58,7 +56,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Courses"
+                android:text="Your Courses"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -68,19 +66,23 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contain" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewCourses"
+            android:id="@+id/recyclerViewCourseSchedulesCalendar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backContainer">
 
-        </androidx.recyclerview.widget.RecyclerView>
-
+            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.drawerlayout.widget.DrawerLayout>

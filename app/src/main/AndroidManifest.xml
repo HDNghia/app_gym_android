@@ -16,6 +16,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.course_trainer_calendar"
+            android:exported="false"
+            android:label="Calendar"/>
+        <activity
             android:name=".activity.course_user_calendar"
             android:exported="false"
             android:label="Calendar"/>
@@ -92,6 +96,14 @@
             android:exported="false"
             android:label="Course Details" />
         <activity
+            android:name=".activity.course_trainer_calendar"
+            android:exported="false"
+            android:label="Course Calendar" />
+        <activity
+            android:name=".activity.course_schedule_trainer_update"
+            android:exported="false"
+            android:label="Course Schedule Update" />
+        <activity
             android:name=".activity.update_course_trainer"
             android:exported="false"
             android:label="Update Course" />
@@ -106,11 +118,11 @@
         <activity
             android:name=".activity.login"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".activity.register"
@@ -120,8 +132,13 @@
             android:exported="false" />
         <activity
             android:name=".activity.post_user_gets"
-            android:exported="false"
+            android:exported="true"
             android:label="News">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

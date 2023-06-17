@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".activity.course_schedule_trainer_get">
 
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/btn_shape_round"
+        android:contentDescription="back"
+        android:layout_marginTop="15dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back"
+        />
+
     <TextView
         android:id="@+id/courseScheduleList"
         android:layout_width="match_parent"

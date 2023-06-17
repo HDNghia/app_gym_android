@@ -2,19 +2,21 @@ package com.example.thanh.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CourseScheduleDetail {
-    @SerializedName("courseSchedule")
-    private CourseSchedule courseSchedule;
+import java.util.List;
 
-    @SerializedName("courseInfo")
+public class CourseScheduleDetail {
+    @SerializedName("courseSheduleinfo")
+    private List<CourseSchedule> courseSheduleinfo;
+
+    @SerializedName("courseinfo")
     private Course courseInfo;
 
-    public CourseSchedule getCourseSchedule() {
-        return courseSchedule;
+    public List<CourseSchedule> getCourseSchedule() {
+        return courseSheduleinfo;
     }
 
-    public void setCourseSchedule(CourseSchedule courseSchedule) {
-        this.courseSchedule = courseSchedule;
+    public void setCourseSchedule(List<CourseSchedule> courseSchedule) {
+        this.courseSheduleinfo = courseSchedule;
     }
 
     public Course getCourseInfo() {

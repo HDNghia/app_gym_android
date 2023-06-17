@@ -2,13 +2,16 @@ package com.example.thanh.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Course {
+import java.util.List;
+
+public class CourseScheduleCalendar {
     @SerializedName("_id")
     private int id;
 
     @SerializedName("trainerId")
     private int trainerId;
-
+    @SerializedName("attachment")
+    private String attachment;
     @SerializedName("title")
     private String title;
 
@@ -30,9 +33,6 @@ public class Course {
     @SerializedName("capacity")
     private int capacity;
 
-    @SerializedName("attachment")
-    private String attachment;
-
     @SerializedName("fee")
     private int fee;
 
@@ -48,38 +48,8 @@ public class Course {
     @SerializedName("__v")
     private int version;
 
-    public String getStringSchedule() {
-        return stringSchedule;
-    }
-
-
-    private String stringSchedule;
-
-    public void setStringSchedule(String stringSchedule) {
-        this.stringSchedule = stringSchedule;
-    }
-
-    public Course(){
-
-    }
-
-    public Course(int id, int trainerId, String title, String description, String location, int status, long startDate, long endDate, int capacity, String attachment, int fee, boolean isDeleted, int serviceTypeId, long lastModifyDate, int version) {
-        this.id = id;
-        this.trainerId = trainerId;
-        this.title = title;
-        this.description = description;
-        this.location = location;
-        this.status = status;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.capacity = capacity;
-        this.attachment = attachment;
-        this.fee = fee;
-        this.isDeleted = isDeleted;
-        this.serviceTypeId = serviceTypeId;
-        this.lastModifyDate = lastModifyDate;
-        this.version = version;
-    }
+    @SerializedName("courseSheduleinfo")
+    private List<CourseSchedule> courseScheduleInfo;
 
     public int getId() {
         return id;
@@ -238,25 +208,11 @@ public class Course {
     public void setVersion(int version) {
         this.version = version;
     }
+    public List<CourseSchedule> getCourseScheduleInfo() {
+        return courseScheduleInfo;
+    }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", trainerId=" + trainerId +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", location='" + location + '\'' +
-                ", status=" + status +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", capacity=" + capacity +
-                ", attachment='" + attachment + '\'' +
-                ", fee=" + fee +
-                ", isDeleted=" + isDeleted +
-                ", serviceTypeId=" + serviceTypeId +
-                ", lastModifyDate=" + lastModifyDate +
-                ", version=" + version +
-                '}';
+    public void setCourseScheduleInfo(List<CourseSchedule> courseScheduleInfo) {
+        this.courseScheduleInfo = courseScheduleInfo;
     }
 }

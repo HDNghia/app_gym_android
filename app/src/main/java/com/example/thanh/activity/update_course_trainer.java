@@ -1,5 +1,7 @@
 package com.example.thanh.activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -78,11 +80,15 @@ public class update_course_trainer extends AppCompatActivity {
 
         ImageButton btnGoBack = findViewById(R.id.btnBack);
         Button btnCancel = findViewById(R.id.back_button);
+        int courseId = getIntent().getIntExtra("id", -1);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Handle the button click event
-                onBackPressed(); // Navigate back to the previous screen
+                Intent intent = new Intent(update_course_trainer.this, course_trainer_details.class);
+                intent.putExtra("id", courseId);
+                startActivity(intent);
+                finish();
             }
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +101,7 @@ public class update_course_trainer extends AppCompatActivity {
 
         courseApi = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
-        int courseId = getIntent().getIntExtra("id", -1);
+
         Call<CourseDetail> call = courseApi.getCourseById(courseId);
         call.enqueue(new Callback<CourseDetail>() {
             @Override
@@ -200,19 +206,9 @@ public class update_course_trainer extends AppCompatActivity {
         course.setFee(fee);
         course.setCapacity(capacity);
         course.setServiceTypeId(serviceTypeId);
-        course.setTrainerId(2);
         course.setStatus(status);
+        course.setTrainerId(13);
         course.setAttachment("Teo");
-//        course.setTitle("title");
-//        course.setDescription("description");
-//        course.setLocation("location");
-//        course.setStartDate(1683103370);  // Chuyển đổi thành số nguyên
-//        course.setEndDate(1683103370);  // Chuyển đổi thành số nguyên
-//        course.setFee(12);
-//        course.setCapacity(12);
-//        course.setServiceTypeId(1);
-//        course.setTrainerId(2);
-//        course.setStatus(0);
 
         Log.d("MyApp", "Title: " + course.getTitle());
         Log.d("MyApp", "Description: " + course.getDescription());
@@ -234,6 +230,7 @@ public class update_course_trainer extends AppCompatActivity {
             public void onResponse(Call<Course> callUpdate, Response<Course> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(update_course_trainer.this, "Cập nhật khóa học thành công", Toast.LENGTH_SHORT).show();
+
                 } else {
                     int statusCode = response.code();
                     String errorMessage = "Cập nhật khóa học không thành công. Mã phản hồi: " + statusCode;
@@ -255,24 +252,31 @@ public class update_course_trainer extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Course> call, Throwable t) {
-                // Handle failure
-                // Log thông tin lỗiS
                 Log.e("MyApp", "Cập nhật khóa học thất bại: " + t.getMessage());
                 // Hiển thị thông báo lỗi cho người dùng
                 Toast.makeText(update_course_trainer.this, "Cập nhật khóa học thành công", Toast.LENGTH_SHORT).show();
 
             }
+
         });
-        Intent intent = new Intent(update_course_trainer.this, course_trainer_get.class);
-        startActivity(intent);
-//        setContentView(R.layout.create_course_notify);
-//        Button backToHome= findViewById(R.id.buttonBack);
-//        backToHome.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(update_course_trainer.this, course_trainer_get.class);
-//                startActivity(intent);
-//            }
-//        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Quay trở về trang khóa học");
+        builder.setMessage("Bạn có muốn quay trở về trang khóa học không?");
+        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Xử lý sự kiện khi bấm nút "Đồng ý"
+                // Thực hiện hành động quay trở về trang khóa học
+                // Ví dụ:
+                Intent intent = new Intent(update_course_trainer.this, course_trainer_details.class);
+                intent.putExtra("id", courseID);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 }

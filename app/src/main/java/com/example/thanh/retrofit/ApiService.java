@@ -4,6 +4,8 @@ import com.example.thanh.model.Conversation;
 import com.example.thanh.model.Course;
 import com.example.thanh.model.CourseDetail;
 import com.example.thanh.model.CourseRegister;
+import com.example.thanh.model.CourseSchedule;
+import com.example.thanh.model.CourseScheduleCalendar;
 import com.example.thanh.model.CourseScheduleDetail;
 import com.example.thanh.model.CourseUser;
 import com.example.thanh.model.FoodItem;
@@ -109,8 +111,12 @@ public interface ApiService {
     @GET("v1/courses/{id}")
     Call<List<Course>> getCoursesByTrainerID(@Path("id") int id);
 
-    @GET("/v1/courseSchedule")
+    @GET("v1/courseSchedule")
     Call<com.example.thanh.activity.course_schedule_trainer_get.GetCourseSchedule> getCourseScheduleByCourseId(@Query("courseId") int courseId);
+
+    @GET("v1/courseSchedule/user-scheduled/{id}")
+    Call<List<CourseScheduleDetail>> getCourseScheduleByUserId(@Path("id") int id);
+
     @DELETE("v1/courses/{id}")
     Call<Course> deleteCourseByID(@Path("id") int id);
     @POST("v1/courses")
@@ -118,9 +124,16 @@ public interface ApiService {
     @PUT("v1/courses/{id}")
     Call<Course> updateCourse(@Body Course course, @Path("id") int id);
 
+    @GET("v1/courseSchedule/trainer-scheduled/{id}")
+    Call<List<CourseScheduleCalendar>> getCourseScheduleCalendarOfTrainer(@Path("id") int id);
+
+    @PUT("v1/courseSchedule/{id}")
+    Call<CourseSchedule> updateCourseSchedule(@Body CourseSchedule courseSchedule, @Path("id") int id);
+
     @GET("v1/invoice/{id}")
     Call<List<Invoice>> getInvoice(@Path("id") int id);
 
     @POST("v1/invoice")
     Call<Invoice> createInvoice(@Body Invoice invoice);
+
 }

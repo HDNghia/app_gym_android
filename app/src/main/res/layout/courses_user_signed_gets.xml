@@ -64,7 +64,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/btnFilter"
+                android:id="@+id/btnCalendar"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="24dp"
@@ -73,7 +73,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/baseline_filter" />
+                app:srcCompat="@drawable/baseline_calendar_month_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

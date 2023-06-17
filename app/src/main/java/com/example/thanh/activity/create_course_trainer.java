@@ -1,8 +1,10 @@
 package com.example.thanh.activity;
 
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -264,9 +266,25 @@ public class create_course_trainer extends AppCompatActivity {
                     Log.d("RES", jsonString);
                     // Xử lý khi tạo khóa học thành công
                     Toast.makeText(create_course_trainer.this, "Tạo khóa học thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(create_course_trainer.this, course_trainer_details.class);
-                    intent.putExtra("id", createdCourse.getId());
-                    startActivity(intent);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(create_course_trainer.this);
+                    builder.setTitle("Quay trở về trang khóa học");
+                    builder.setMessage("Bạn có muốn quay trở về trang khóa học không?");
+                    builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Xử lý sự kiện khi bấm nút "Đồng ý"
+                            // Thực hiện hành động quay trở về trang khóa học
+                            // Ví dụ:
+                            Intent intent = new Intent(create_course_trainer.this, course_trainer_details.class);
+                            intent.putExtra("id", createdCourse.getId());
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
                 } else {
                     // Xử lý khi tạo khóa học thất bại
                     Toast.makeText(create_course_trainer.this, "Tạo khóa học thất bại", Toast.LENGTH_SHORT).show();
