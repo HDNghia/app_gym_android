@@ -48,16 +48,6 @@ public class course_user_signed_get extends NavActivity {
             }
         });
 
-        ImageButton btnCalendar = findViewById(R.id.btnCal);
-        btnCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(course_user_signed_get.this, course_user_calendar.class);
-                intent.putExtra("_id", courseId);
-                startActivity(intent);
-            }
-        });
-
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
         Call<CourseDetail> call = apiService.getCourseById(courseId);

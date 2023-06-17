@@ -150,5 +150,4 @@ public class course_trainer_calendar extends NavActivity {
             }
         });
     }
-
 }

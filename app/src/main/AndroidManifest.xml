@@ -16,6 +16,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.course_trainer_calendar"
+            android:exported="false"
+            android:label="Calendar"/>
+        <activity
             android:name=".activity.course_user_calendar"
             android:exported="false"
             android:label="Calendar"/>
@@ -124,7 +128,8 @@
             android:exported="false" />
         <activity
             android:name=".activity.post_user_gets"
-            android:exported="true">
+            android:exported="true"
+            android:label="News">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

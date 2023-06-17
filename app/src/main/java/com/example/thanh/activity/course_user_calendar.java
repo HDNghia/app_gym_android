@@ -1,23 +1,33 @@
 package com.example.thanh.activity;
 
+import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.thanh.R;
+import com.example.thanh.adapter.CourseScheduleAdapter;
 import com.example.thanh.model.*;
 import com.example.thanh.retrofit.ApiService;
 import com.example.thanh.retrofit.RetrofitClient;
 import com.google.gson.Gson;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,8 +50,8 @@ public class course_user_calendar extends NavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int courseId = getIntent().getIntExtra("_id", -1);
 
+        int userId = getIntent().getIntExtra("_id", -1);
         ImageButton btnGoBack = findViewById(R.id.btnBack);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,12 +62,12 @@ public class course_user_calendar extends NavActivity {
 
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
-        Call<CourseScheduleDetail> call = apiService.getCourseSchedule(courseId);
-        call.enqueue(new Callback<CourseScheduleDetail>() {
+        Call<List<CourseScheduleDetail>> call = apiService.getCourseScheduleByUserId(userId);
+        call.enqueue(new Callback() {
             @Override
-            public void onResponse(retrofit2.Call<CourseScheduleDetail> call, Response<CourseScheduleDetail> response) {
+            public void onResponse(retrofit2.Call call, Response response) {
                 if (response.isSuccessful()) {
-                    CourseScheduleDetail course = response.body();
+                    List<CourseScheduleDetail> course = (List<CourseScheduleDetail>) response.body();
                     String jsonString = new Gson().toJson(course);
                     Log.d("RES Schedule", jsonString);
                     Log.d("API schedule", "Success");
@@ -68,76 +78,52 @@ public class course_user_calendar extends NavActivity {
             }
 
             @Override
-            public void onFailure(Call<CourseScheduleDetail> call, Throwable t) {
+            public void onFailure(Call call, Throwable t) {
                 String errorMessage = t.getMessage();
                 Log.d("Error: ", errorMessage);
             }
         });
     }
 
-    private void displaySchedule(CourseScheduleDetail courseSchedule) {
+    private void displaySchedule(List<CourseScheduleDetail> courseScheduleDetails) {
         CalendarView calendarView = findViewById(R.id.calendarView);
-        TextView dayNote = findViewById(R.id.dayNote);
-        TextView dayNot = findViewById(R.id.dayNot);
-        TextView dayName = findViewById(R.id.dayName);
-        Calendar calendar = Calendar.getInstance();
-        long nowInMillis = calendar.getTimeInMillis();
-        if(nowInMillis >= courseSchedule.getCourseSchedule().getFromDateTime() * 1000 && nowInMillis <= courseSchedule.getCourseSchedule().getToDateTime() * 1000){
-            dayNot.setVisibility(View.GONE);
-            dayNote.setVisibility(View.VISIBLE);
-        } else {
-            dayNot.setVisibility(View.VISIBLE);
-            dayNote.setVisibility(View.GONE);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewCourseSchedulesCalendar);
+        List<CourseSchedule> allCourseSchedules = new ArrayList<>();
+        for (CourseScheduleDetail scheduleCalendar : courseScheduleDetails) {
+            List<CourseSchedule> scheduleInfo = scheduleCalendar.getCourseSchedule();
+            allCourseSchedules.addAll(scheduleInfo);
         }
+
+        CourseScheduleAdapter adapter = new CourseScheduleAdapter(allCourseSchedules);
+
+        // Thiết lập LayoutManager cho RecyclerView (LinearLayoutManager, GridLayoutManager, etc.)
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // Thiết lập Adapter cho RecyclerView
+        recyclerView.setAdapter(adapter);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
-                dayNote.setVisibility(View.GONE);
-                dayName.setVisibility(View.GONE);
-                dayNot.setVisibility(View.VISIBLE);
-                // Lấy giá trị ngày được chọn
-                Calendar selectedDate = Calendar.getInstance();
-                selectedDate.set(year, month, dayOfMonth);
-
-//                long from = courseSchedule.getFromDateTime();
-//                long to = courseSchedule.getToDateTime();
-//                Date dateFrom = new Date(from * 1000);
-//                Date dateTo = new Date(to * 1000);
-
-                // Tạo định dạng cho đối tượng Date
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
-                // Chuyển đổi đối tượng Date thành chuỗi ngày tháng
-//                String fromDate = dateFormat.format(dateFrom);
-//                String toDate = dateFormat.format(dateTo);
-//                Log.d("from", fromDate);
-//                Log.d("to", toDate);
-
-                // Đặt giá trị giờ, phút và giây thành tối đa
-                selectedDate.set(Calendar.HOUR_OF_DAY, 23);
-                selectedDate.set(Calendar.MINUTE, 59);
-                selectedDate.set(Calendar.SECOND, 59);
-                selectedDate.set(Calendar.MILLISECOND, 999);
-
-                // Chuyển đổi ngày sang định dạng long
-                long selectedDateTime = selectedDate.getTimeInMillis();
-                Date dateNow = new Date(selectedDateTime);
-                String nowDate = dateFormat.format(dateNow);
-//                Log.d("now", nowDate);
-
-                // So sánh với từng CourseSchedule và hiển thị ghi chú tương ứng
-                if (selectedDateTime >= courseSchedule.getCourseSchedule().getFromDateTime() * 1000 && selectedDateTime <= courseSchedule.getCourseSchedule().getToDateTime() * 1000) {
-                    String note = courseSchedule.getCourseSchedule().getNote();
-                    String courseName = courseSchedule.getCourseInfo().getTitle();
-                    // Hiển thị ghi chú
-                    Log.d("Show", "Success");
-                    dayNot.setVisibility(View.GONE);
-                    dayNote.setVisibility(View.VISIBLE);
-                    dayNote.setText(note);
-                    dayName.setVisibility(View.VISIBLE);
-                    dayName.setText(courseName);
+                // Lọc danh sách lịch học dựa trên ngày được chọn (year, month, dayOfMonth)
+                List<CourseSchedule> filteredSchedule = new ArrayList<>();
+                for (CourseScheduleDetail scheduleCalendar : courseScheduleDetails) {
+                    List<CourseSchedule> scheduleInfo = scheduleCalendar.getCourseSchedule();
+                    for (CourseSchedule schedule : scheduleInfo) {
+                        // Kiểm tra xem ngày bắt đầu của lịch học có khớp với ngày được chọn không
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTimeInMillis(schedule.getFromDateTime());
+                        if (calendar.get(Calendar.YEAR) == year
+                                && calendar.get(Calendar.MONTH) == month
+                                && calendar.get(Calendar.DAY_OF_MONTH) == dayOfMonth) {
+                            filteredSchedule.add(schedule);
+                        }
+                    }
                 }
+
+                // Cập nhật dữ liệu trong CourseScheduleAdapter
+                adapter.setCourseSchedules(filteredSchedule);
             }
         });
     }
