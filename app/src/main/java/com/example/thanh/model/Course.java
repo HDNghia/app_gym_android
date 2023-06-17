@@ -52,6 +52,7 @@ public class Course {
         return stringSchedule;
     }
 
+
     private String stringSchedule;
 
     public void setStringSchedule(String stringSchedule) {

@@ -47,7 +47,6 @@ public class course_trainer_calendar extends NavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         int trainerID = getIntent().getIntExtra("_id", -1);
         Log.d("TrainerID:", String.valueOf(trainerID));
         ImageButton btnGoBack = findViewById(R.id.btnBack);
@@ -100,30 +99,55 @@ public class course_trainer_calendar extends NavActivity {
         // Thiết lập Adapter cho RecyclerView
         recyclerView.setAdapter(adapter);
 
+        // Lọc danh sách lịch học của ngày hôm nay
+        Calendar todayCalendar = Calendar.getInstance();
+        int todayYear = todayCalendar.get(Calendar.YEAR);
+        int todayMonth = todayCalendar.get(Calendar.MONTH);
+        int todayDayOfMonth = todayCalendar.get(Calendar.DAY_OF_MONTH);
+        List<CourseSchedule> filteredSchedule = new ArrayList<>();
+        for (CourseScheduleCalendar scheduleCalendar : courseSchedule) {
+            List<CourseSchedule> scheduleInfo = scheduleCalendar.getCourseScheduleInfo();
+            for (CourseSchedule schedule : scheduleInfo) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(schedule.getFromDateTime());
+                int scheduleYear = calendar.get(Calendar.YEAR);
+                int scheduleMonth = calendar.get(Calendar.MONTH);
+                int scheduleDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                if (scheduleYear == todayYear && scheduleMonth == todayMonth && scheduleDayOfMonth == todayDayOfMonth) {
+                    filteredSchedule.add(schedule);
+                }
+            }
+        }
+
+        // Cập nhật dữ liệu trong CourseScheduleAdapter
+        adapter.setCourseSchedules(filteredSchedule);
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
-                // Lọc danh sách lịch học dựa trên ngày được chọn (year, month, dayOfMonth)
-                List<CourseSchedule> filteredSchedule = new ArrayList<>();
-                for (CourseScheduleCalendar scheduleCalendar : courseSchedule) {
-                    List<CourseSchedule> scheduleInfo = scheduleCalendar.getCourseScheduleInfo();
-                    for (CourseSchedule schedule : scheduleInfo) {
-                        // Kiểm tra xem ngày bắt đầu của lịch học có khớp với ngày được chọn không
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTimeInMillis(schedule.getFromDateTime());
-                        if (calendar.get(Calendar.YEAR) == year
-                                && calendar.get(Calendar.MONTH) == month
-                                && calendar.get(Calendar.DAY_OF_MONTH) == dayOfMonth) {
-                            filteredSchedule.add(schedule);
+                // Kiểm tra xem ngày được chọn có phải là ngày hôm nay hay không
+                if (year == todayYear && month == todayMonth && dayOfMonth == todayDayOfMonth) {
+                    // Ngày được chọn là ngày hôm nay, không cần lọc lại danh sách
+                    adapter.setCourseSchedules(filteredSchedule);
+                } else {
+                    // Lọc danh sách lịch học dựa trên ngày được chọn (year, month, dayOfMonth)
+                    List<CourseSchedule> filteredSchedule = new ArrayList<>();
+                    for (CourseScheduleCalendar scheduleCalendar : courseSchedule) {
+                        List<CourseSchedule> scheduleInfo = scheduleCalendar.getCourseScheduleInfo();
+                        for (CourseSchedule schedule : scheduleInfo) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTimeInMillis(schedule.getFromDateTime());
+                            if (calendar.get(Calendar.YEAR) == year
+                                    && calendar.get(Calendar.MONTH) == month
+                                    && calendar.get(Calendar.DAY_OF_MONTH) == dayOfMonth) {
+                                filteredSchedule.add(schedule);
+                            }
                         }
                     }
+                    // Cập nhật dữ liệu trong CourseScheduleAdapter
+                    adapter.setCourseSchedules(filteredSchedule);
                 }
-
-                // Cập nhật dữ liệu trong CourseScheduleAdapter
-                adapter.setCourseSchedules(filteredSchedule);
             }
         });
-
-
     }
 }

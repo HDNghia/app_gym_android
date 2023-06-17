@@ -1,5 +1,6 @@
 package com.example.thanh.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -119,6 +120,7 @@ public class CourseTrainerAdapter extends RecyclerView.Adapter<CourseTrainerAdap
                 Log.d("CourseId", String.valueOf(course.getId()));
                 intent.putExtra("id", course.getId());
                 view.getContext().startActivity(intent);
+                ((Activity) view.getContext()).finish();
             }
         });
 

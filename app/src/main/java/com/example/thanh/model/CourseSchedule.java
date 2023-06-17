@@ -17,6 +17,14 @@ public class CourseSchedule {
     private int version;
 
     // Constructors
+    public CourseSchedule(){
+        this.id = 0;
+        this.courseId=0;
+        this.fromDateTime=0;
+        this.toDateTime=0;
+        this.version=0;
+        this.note="";
+    }
     public CourseSchedule(int id, int courseId, String note, long fromDateTime, long toDateTime, int version) {
         this.id = id;
         this.courseId = courseId;

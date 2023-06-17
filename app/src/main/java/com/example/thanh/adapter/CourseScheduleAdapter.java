@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.thanh.R;
+import com.example.thanh.activity.course_schedule_trainer_update;
 import com.example.thanh.activity.course_trainer_details;
 import com.example.thanh.model.Course;
 import com.example.thanh.model.CourseDetail;
@@ -101,10 +102,10 @@ public class CourseScheduleAdapter extends RecyclerView.Adapter<CourseScheduleAd
                 // Get the corresponding student
                 CourseSchedule courseSchedule = courseSchedules.get(position);
                 // Navigate to the student's profile page using an Intent
-                Intent intent = new Intent(view.getContext(), course_trainer_details.class);
-//                Log.d("CourseId", String.valueOf(courseSchedule.getId()));
-//                intent.putExtra("id", courseSchedule.getId());
-//                view.getContext().startActivity(intent);
+                Intent intent = new Intent(view.getContext(), course_schedule_trainer_update.class);
+                intent.putExtra("id", courseSchedule.getId());
+                intent.putExtra("courseId",courseSchedule.getCourseId());
+                view.getContext().startActivity(intent);
             }
         });
     }

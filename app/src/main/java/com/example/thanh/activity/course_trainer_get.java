@@ -61,7 +61,6 @@ public class course_trainer_get extends NavActivity {
                 onBackPressed(); // Navigate back to the previous screen
             }
         });
-
         ImageButton courseCalendarView = findViewById(R.id.courseCalendarView);
         courseCalendarView.setOnClickListener(new View.OnClickListener() {
             @Override
