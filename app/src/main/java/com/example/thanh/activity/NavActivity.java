@@ -19,6 +19,7 @@ public abstract class NavActivity extends AppCompatActivity implements Navigatio
     protected DrawerLayout drawerLayout;
     protected NavigationView navigationView;
     protected Toolbar toolbar;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public abstract class NavActivity extends AppCompatActivity implements Navigatio
         setContentView(getLayoutResourceId());
 
         drawerLayout = findViewById(R.id.drawerLayout);
+        databaseHelper = new DatabaseHelper(this);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
@@ -83,6 +85,7 @@ public abstract class NavActivity extends AppCompatActivity implements Navigatio
                 startActivity(trainerIntent);
                 break;
             case R.id.nav_logout:
+                databaseHelper.deleteAll();
                 Intent login = new Intent(this, login.class);
                 startActivity(login);
                 finish();

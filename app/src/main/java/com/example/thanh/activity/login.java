@@ -18,12 +18,10 @@ import com.example.thanh.model.User;
 import com.example.thanh.retrofit.ApiService;
 import com.google.gson.Gson;
 
-import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class login extends AppCompatActivity {
     private EditText emailEditText;
@@ -39,7 +37,9 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in);
         Retrofit retrofit = getRetrofitInstance();
+
         databaseHelper = new DatabaseHelper(this);
+
         userApi = retrofit.create(ApiService.class);
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -51,9 +51,6 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
-//                Intent intent = new Intent(login.this, post_user_gets.class);
-//                startActivity(intent);
-//                finish();
             }
         });
         registerTextView.setOnClickListener(new View.OnClickListener() {
@@ -93,23 +90,18 @@ public class login extends AppCompatActivity {
                     String jsonString = new Gson().toJson(User1);
                     Log.d("RES", jsonString);
                     saveUser(User1);
+                    Toast.makeText(login.this, "Success: " +"Login Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(login.this, post_user_gets.class);
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(login.this, "Lỗi: " +"Register fail", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(login.this, login.class);
-                    startActivity(intent);
-                    finish();
+                    Toast.makeText(login.this, "Fail: " +"Login fail", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(login.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(login.this, login.class);
-                startActivity(intent);
-                finish();
+                Toast.makeText(login.this, "Bug: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
