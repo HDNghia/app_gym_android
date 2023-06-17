@@ -68,7 +68,6 @@ public class course_trainer_details extends AppCompatActivity {
         updateCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(view.getContext(), update_course_trainer.class);
                 intent.putExtra("id", courseId);
                 view.getContext().startActivity(intent);

@@ -8,6 +8,7 @@ import com.example.thanh.model.CourseScheduleDetail;
 import com.example.thanh.model.CourseUser;
 import com.example.thanh.model.FoodItem;
 import com.example.thanh.model.FoodUser;
+import com.example.thanh.model.Invoice;
 import com.example.thanh.model.LikeRequest;
 import com.example.thanh.model.Message;
 import com.example.thanh.model.Post;
@@ -28,14 +29,20 @@ import retrofit2.http.Query;
 public interface ApiService {
     @GET("v1/user/{id}")
     Call<User> getUser(@Path("id") int id);
+
+    @PUT("v1/user/{id}")
+    Call<Void> updateUser(@Path("id") int id, @Body User user);
+
     @POST("v1/user")
     Call<User> createUser(@Body User requestData);
+
     @GET("v1/sendEmail/{email}/{otp}")
     Call<Void> verifyEmailOtp(@Path("email") String email, @Path("otp") String otp);
     @POST("v1/user/login")
     Call<User> logIn(@Body User requestData);
     @POST("v1/user/changepass")
     Call<User> changepass(@Body User requestData);
+
     @GET("v1/user")
     Call<List<User>> getUserByName(@Query("name") String name);
 
@@ -91,7 +98,7 @@ public interface ApiService {
     Call<Post> postPost(@Body Post post);
 
     @GET("v1/postReact")
-    Call<List<PostReaction>> getPostReaction(@Query("userId") int userId, @Query("postId") int postId);
+    Call<List<PostReaction>> getPostReaction(@Query("postId") int postId);
 
     @POST("v1/postReact")
     Call<PostReaction> postPostReaction(@Body PostReaction postReaction);
@@ -110,5 +117,8 @@ public interface ApiService {
     Call<Course> createCourse(@Body Course course);
     @PUT("v1/courses/{id}")
     Call<Course> updateCourse(@Body Course course, @Path("id") int id);
+
+    @GET("v1/invoice/{id}")
+    Call<List<Invoice>> getInvoice(@Path("id") int id);
 
 }

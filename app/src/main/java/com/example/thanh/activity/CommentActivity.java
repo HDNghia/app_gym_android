@@ -89,7 +89,7 @@ public class CommentActivity  extends AppCompatActivity {
     }
     private void getPostReaction(int userId, int postId) {
         Log.d("bug","voo1");
-        Call<List<PostReaction>> call = apiService.getPostReaction(userId, postId);
+        Call<List<PostReaction>> call = apiService.getPostReaction(postId);
         Log.d("bug", "voo2");
         call.enqueue(new Callback<List<PostReaction>>() {
             @Override

@@ -22,6 +22,8 @@ import com.example.thanh.retrofit.RetrofitClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,61 +42,11 @@ public class course_schedule_trainer_get extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_schedule_trainer_get);
-        // Khởi tạo các view
-        buttonAdd = findViewById(R.id.buttonAdd);
-        formLayout = findViewById(R.id.formLayout);
-        buttonSubmit = findViewById(R.id.buttonSubmit);
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleFormVisibility();
-            }
-        });
-
-        // Xử lý sự kiện nhấp vào button "Thêm" trong form
-        buttonSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Thực hiện thao tác thêm dữ liệu
-                // TODO: Xử lý thêm dữ liệu vào cơ sở dữ liệu
-
-                // Ẩn form và hiển thị lại button "Thêm"
-                toggleFormVisibility();
-            }
-        });
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         int courseId = getIntent().getIntExtra("id", -1);
         Log.d("CourseID", String.valueOf(courseId));
-//        courseCalendarView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(course_schedule_trainer_get.this, course_calendar_view.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        FloatingActionButton createCourseButton = findViewById(R.id.createCourseButton);
-//        createCourseButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openCreateCourseActivity();
-//            }
-//        });
 
         getCourseSchedulesByTrainerID(courseId);
-    }
-    private void toggleFormVisibility() {
-        if (isFormVisible) {
-            // Nếu form đang hiển thị, ẩn form và hiển thị lại button "Thêm"
-            formLayout.setVisibility(View.GONE);
-            buttonAdd.setVisibility(View.VISIBLE);
-            isFormVisible = false;
-        } else {
-            // Nếu form không hiển thị, ẩn button "Thêm" và hiển thị form
-            buttonAdd.setVisibility(View.GONE);
-            formLayout.setVisibility(View.VISIBLE);
-            isFormVisible = true;
-        }
     }
     public class GetCourseSchedule {
         private List<CourseSchedule> GetCourseSchedule;
@@ -136,10 +88,19 @@ public class course_schedule_trainer_get extends AppCompatActivity {
     }
 
     private void displayCourseSchedules(List<CourseSchedule> courseSchedules) {
+        // Sort the list based on the start time
+        Collections.sort(courseSchedules, new Comparator<CourseSchedule>() {
+            @Override
+            public int compare(CourseSchedule schedule1, CourseSchedule schedule2) {
+                return Long.compare(schedule1.getFromDateTime(), schedule2.getFromDateTime());
+            }
+        });
+
         RecyclerView recyclerView = findViewById(R.id.recyclerViewCourseSchedules);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         CourseScheduleAdapter adapter = new CourseScheduleAdapter(courseSchedules);
         recyclerView.setAdapter(adapter);
     }
+
 }
