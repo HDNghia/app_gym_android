@@ -73,15 +73,10 @@ public class CourseTrainerAdapter extends RecyclerView.Adapter<CourseTrainerAdap
         String formattedDateEnd = dateFormat.format(dateE);
         // Set the data to the views
         holder.imageView.setImageResource(R.drawable.course_logo_img);
-        Log.d("DEBUG:", "1");
         holder.textViewTitle.setText(Html.fromHtml("<b>Khóa học:</b> " + course.getTitle()));
-        Log.d("DEBUG:", "2");
         holder.textViewDate.setText(formattedDateStart + " - " +formattedDateEnd);
-        Log.d("DEBUG:", "3");
         holder.textViewLocation.setText(Html.fromHtml("<b>Địa điểm:</b> " + course.getLocation()));
-        Log.d("DEBUG:", "4");
         holder.textViewCapacity.setText(Html.fromHtml("<b>Số lượng học viên:</b> " + course.getCapacity()));
-        Log.d("DEBUG:", "5");
         int status = course.getStatus();
         String statusString = course.getStringStatus();
 

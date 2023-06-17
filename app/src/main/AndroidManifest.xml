@@ -101,12 +101,12 @@
             android:label="Invoice"/>
         <activity
             android:name=".activity.login"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".activity.register"
@@ -116,8 +116,13 @@
             android:exported="false" />
         <activity
             android:name=".activity.post_user_gets"
-            android:exported="false"
+            android:exported="true"
             android:label="News">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

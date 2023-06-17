@@ -104,13 +104,16 @@ public interface ApiService {
     @GET("v1/courses/{id}")
     Call<List<Course>> getCoursesByTrainerID(@Path("id") int id);
 
-    @GET("/v1/courseSchedule")
+    @GET("v1/courseSchedule")
     Call<com.example.thanh.activity.course_schedule_trainer_get.GetCourseSchedule> getCourseScheduleByCourseId(@Query("courseId") int courseId);
+
+    @GET("v1/courseSchedule/user-scheduled/{id}")
+    Call<List<CourseScheduleDetail>> getCourseScheduleByUserId(@Path("id") int id);
+
     @DELETE("v1/courses/{id}")
     Call<Course> deleteCourseByID(@Path("id") int id);
     @POST("v1/courses")
     Call<Course> createCourse(@Body Course course);
     @PUT("v1/courses/{id}")
     Call<Course> updateCourse(@Body Course course, @Path("id") int id);
-
 }

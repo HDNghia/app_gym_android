@@ -1,6 +1,7 @@
 package com.example.thanh.adapter;
 
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.thanh.R;
 import com.example.thanh.model.CourseUser;
 import com.example.thanh.activity.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class CourseUserAdapter extends RecyclerView.Adapter<CourseUserAdapter.CourseViewHolder> {
@@ -27,7 +31,7 @@ public class CourseUserAdapter extends RecyclerView.Adapter<CourseUserAdapter.Co
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView textViewTitle;
-        public TextView textViewDescription;
+        public TextView textViewDate;
         public TextView textViewLocation;
         public TextView textViewFee;
 
@@ -35,7 +39,7 @@ public class CourseUserAdapter extends RecyclerView.Adapter<CourseUserAdapter.Co
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            textViewDescription = itemView.findViewById(R.id.textViewDescription);
+            textViewDate = itemView.findViewById(R.id.textViewDate);
             textViewLocation = itemView.findViewById(R.id.textViewLocation);
             textViewFee = itemView.findViewById(R.id.textViewFee);
         }
@@ -43,7 +47,7 @@ public class CourseUserAdapter extends RecyclerView.Adapter<CourseUserAdapter.Co
 
     @Override
     public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_user_item, parent, false);
         return new CourseViewHolder(view);
     }
 
@@ -52,12 +56,18 @@ public class CourseUserAdapter extends RecyclerView.Adapter<CourseUserAdapter.Co
     public void onBindViewHolder(CourseViewHolder holder, int position) {
         CourseUser course = courses.get(position);
 
+        Date dateS = new Date(course.getCourseInfo().getStartDate());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDateStart = dateFormat.format(dateS);
+        Date dateE = new Date(course.getCourseInfo().getEndDate());
+        String formattedDateEnd = dateFormat.format(dateE);
+
         // Set the data to the views
         holder.imageView.setImageResource(R.drawable.course);
-        holder.textViewTitle.setText("Lop tap the hinh");
-        holder.textViewDescription.setText("Nang cao suc khoe");
-        holder.textViewLocation.setText("Da Nang");
-        holder.textViewFee.setText(String.valueOf(123));
+        holder.textViewTitle.setText(Html.fromHtml("<b>Khóa học:</b> " + course.getCourseInfo().getTitle()));
+        holder.textViewDate.setText(formattedDateStart + " - " +formattedDateEnd);
+        holder.textViewLocation.setText(Html.fromHtml("<b>Địa điểm:</b> " + course.getCourseInfo().getLocation()));
+        holder.textViewFee.setText(String.valueOf(course.getCourseInfo().getFee()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

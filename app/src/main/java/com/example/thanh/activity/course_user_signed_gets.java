@@ -1,5 +1,6 @@
 package com.example.thanh.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +44,16 @@ public class course_user_signed_gets extends NavActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed(); // Navigate back to the previous screen
+            }
+        });
+
+        ImageButton btnCalendar = findViewById(R.id.btnCalendar);
+        btnCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(course_user_signed_gets.this, course_user_calendar.class);
+                //intent.putExtra("userId", );
+                startActivity(intent);
             }
         });
 
