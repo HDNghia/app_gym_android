@@ -135,8 +135,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 User student = new User();
                 student.set_id(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
                 student.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+                student.setFirstname(cursor.getString(cursor.getColumnIndex(COLUMN_FIRSTNAME)));
+                student.setAvt(cursor.getString(cursor.getColumnIndex(COLUMN_AVT)));
                 studentList.add(student);
                 Log.d("Tuan",  student.get_id() + "");
+                Log.d("Tuan",  student.getEmail() + "");
+                Log.d("Tuan",  student.getFirstname() + "");
             } while (cursor.moveToNext());
         }
 
