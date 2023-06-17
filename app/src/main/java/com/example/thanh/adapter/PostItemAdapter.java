@@ -48,7 +48,6 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
             String imageUrl = postItem.getAttachmentId1();
             Picasso.get()
                     .load(imageUrl)
-//                .resize(567, 499)
                     .resize(400, 200)
                     .into(imageView);
             imageView.setVisibility(View.VISIBLE);

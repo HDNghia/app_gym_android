@@ -8,6 +8,7 @@ import com.example.thanh.model.CourseScheduleDetail;
 import com.example.thanh.model.CourseUser;
 import com.example.thanh.model.FoodItem;
 import com.example.thanh.model.FoodUser;
+import com.example.thanh.model.Invoice;
 import com.example.thanh.model.LikeRequest;
 import com.example.thanh.model.Message;
 import com.example.thanh.model.Post;
@@ -93,7 +94,7 @@ public interface ApiService {
     Call<Post> postPost(@Body Post post);
 
     @GET("v1/postReact")
-    Call<List<PostReaction>> getPostReaction(@Query("userId") int userId, @Query("postId") int postId);
+    Call<List<PostReaction>> getPostReaction(@Query("postId") int postId);
 
     @POST("v1/postReact")
     Call<PostReaction> postPostReaction(@Body PostReaction postReaction);
@@ -112,5 +113,8 @@ public interface ApiService {
     Call<Course> createCourse(@Body Course course);
     @PUT("v1/courses/{id}")
     Call<Course> updateCourse(@Body Course course, @Path("id") int id);
+
+    @GET("v1/invoice/{id}")
+    Call<List<Invoice>> getInvoice(@Path("id") int id);
 
 }

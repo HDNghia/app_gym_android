@@ -33,18 +33,25 @@ public class FoodListAdapter extends ArrayAdapter<FoodItem> {
         if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(R.layout.food_item, parent, false);
         }
-
         // Ánh xạ các phần tử trong list_item_food.xml\
         ImageView imageView = view.findViewById(R.id.foodImageView);
+
+        if(foodItem.getAttachment().equals("")){
+            imageView.setVisibility(View.INVISIBLE);
+//        ImageView imageView = view.findViewById(R.id.userImageView);
+
+        }else {
 //        ImageView imageView = view.findViewById(R.id.userImageView);
 //        String imageUrl = foodItem.getAttachment();
-        String imageUrl = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80";
+            String imageUrl = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80";
 
-        Picasso.get()
-                .load(imageUrl)
+            Picasso.get()
+                    .load(imageUrl)
 //                .resize(567, 499)
-                .resize(52, 37)
-                .into(imageView);
+                    .resize(52, 37)
+                    .into(imageView);
+            imageView.setVisibility(View.VISIBLE);
+        }
 
         TextView foodIdTextView = view.findViewById(R.id.text_id);
         TextView foodNameTextView = view.findViewById(R.id.text_name);

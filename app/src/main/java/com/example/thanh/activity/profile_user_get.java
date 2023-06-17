@@ -116,6 +116,14 @@ public class profile_user_get  extends NavActivity{
                 startActivity(intent);
             }
         });
+
+        ImageButton btnGoBack = findViewById(R.id.btnBack);
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed(); // Navigate back to the previous screen
+            }
+        });
     }
 
     // Phương thức giả lập dữ liệu đối tượng ProfileUserGet (thay thế bằng dữ liệu thật)
