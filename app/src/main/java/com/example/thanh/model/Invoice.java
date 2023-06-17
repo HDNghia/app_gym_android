@@ -9,7 +9,19 @@ public class Invoice {
     private String tranContent;
     private String note;
     private int tranType;
+    private int courseId;
 
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public Invoice (){
+
+}
     public Invoice(int _id, int userId, int tranQty, int tranDate, int status, String tranContent, String note, int tranType) {
         this._id = _id;
         this.userId = userId;

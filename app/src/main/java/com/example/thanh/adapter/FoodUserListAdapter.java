@@ -1,6 +1,7 @@
 package com.example.thanh.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +39,21 @@ public class FoodUserListAdapter extends ArrayAdapter<FoodUser> {
         ImageView imageView = view.findViewById(R.id.foodImage);
 //        ImageView imageView = view.findViewById(R.id.userImageView);
 //        String imageUrl = foodItem.getFoodInfo().getAttachment();
-        String imageUrl = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80";
 
-        Picasso.get()
-                .load(imageUrl)
+        if(foodItem.getFoodInfo().getAttachment().equals("")){
+            imageView.setVisibility(View.INVISIBLE);
+//        ImageView imageView = view.findViewById(R.id.userImageView);
+
+        }else {
+            Log.d("bug", "nghia");
+            String imageUrl = foodItem.getFoodInfo().getAttachment();
+            Picasso.get()
+                    .load(imageUrl)
 //                .resize(567, 499)
-                .resize(60, 60)
-                .into(imageView);
+                    .resize(60, 60)
+                    .into(imageView);
+            imageView.setVisibility(View.VISIBLE);
+        }
 
             TextView foodNameTextView = view.findViewById(R.id.nameFood);
             TextView foodCaloriesTextView = view.findViewById(R.id.calories);

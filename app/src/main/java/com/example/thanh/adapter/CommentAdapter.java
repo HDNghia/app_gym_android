@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.thanh.model.PostReaction;
 import com.example.thanh.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,6 +33,21 @@ public class CommentAdapter extends ArrayAdapter<PostReaction> {
         Log.d("bug", "voo adapter");
 
         PostReaction postReactionItem = postReactionsItems.get(position);
+
+
+        if(postReactionItem.getUserInfo().getAvt().equals("")){
+
+        }else {
+            ImageView avt = view.findViewById(R.id.face_partner);
+
+            String imageUrl = postReactionItem.getUserInfo().getAvt();
+            Picasso.get()
+                    .load(imageUrl)
+//                .resize(567, 499)
+                    .resize(52, 37)
+                    .into(avt);
+        }
+
 
         TextView CommentTextView = view.findViewById(R.id.commentTextView);
         TextView NameTextView = view.findViewById(R.id.nameTextView);

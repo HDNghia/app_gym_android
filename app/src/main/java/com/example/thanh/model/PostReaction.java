@@ -106,7 +106,7 @@ public class PostReaction {
         private int height;
         private int weight;
         private int workingLevel;
-        private String avtId;
+        private String avt;
         private String coverId;
         private int wallet;
         private boolean isBan;
@@ -132,8 +132,8 @@ public class PostReaction {
             return workingLevel;
         }
 
-        public String getAvtId() {
-            return avtId;
+        public String getAvt() {
+            return avt;
         }
 
         public String getCoverId() {

@@ -10,6 +10,7 @@ import com.example.thanh.model.CourseScheduleDetail;
 import com.example.thanh.model.CourseUser;
 import com.example.thanh.model.FoodItem;
 import com.example.thanh.model.FoodUser;
+import com.example.thanh.model.Invoice;
 import com.example.thanh.model.LikeRequest;
 import com.example.thanh.model.Message;
 import com.example.thanh.model.Post;
@@ -37,8 +38,12 @@ public interface ApiService {
     @POST("v1/user")
     Call<User> createUser(@Body User requestData);
 
+    @GET("v1/sendEmail/{email}/{otp}")
+    Call<Void> verifyEmailOtp(@Path("email") String email, @Path("otp") String otp);
     @POST("v1/user/login")
     Call<User> logIn(@Body User requestData);
+    @POST("v1/user/changepass")
+    Call<User> changepass(@Body User requestData);
 
     @GET("v1/user")
     Call<List<User>> getUserByName(@Query("name") String name);
@@ -95,7 +100,7 @@ public interface ApiService {
     Call<Post> postPost(@Body Post post);
 
     @GET("v1/postReact")
-    Call<List<PostReaction>> getPostReaction(@Query("userId") int userId, @Query("postId") int postId);
+    Call<List<PostReaction>> getPostReaction(@Query("postId") int postId);
 
     @POST("v1/postReact")
     Call<PostReaction> postPostReaction(@Body PostReaction postReaction);
@@ -124,5 +129,11 @@ public interface ApiService {
 
     @PUT("v1/courseSchedule/{id}")
     Call<CourseSchedule> updateCourseSchedule(@Body CourseSchedule courseSchedule, @Path("id") int id);
+
+    @GET("v1/invoice/{id}")
+    Call<List<Invoice>> getInvoice(@Path("id") int id);
+
+    @POST("v1/invoice")
+    Call<Invoice> createInvoice(@Body Invoice invoice);
 
 }

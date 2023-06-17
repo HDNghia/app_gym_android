@@ -16,7 +16,7 @@ public class UserDetail {
     private int workingLevel;
 
     @SerializedName("avtId")
-    private String avtId;
+    private String avt;
 
     @SerializedName("coverId")
     private String coverId;
@@ -95,12 +95,12 @@ public class UserDetail {
         this.workingLevel = workingLevel;
     }
 
-    public String getAvtId() {
-        return avtId;
+    public String getAvt() {
+        return avt;
     }
 
-    public void setAvtId(String avtId) {
-        this.avtId = avtId;
+    public void setAvtId(String avt) {
+        this.avt = avt;
     }
 
     public String getCoverId() {

@@ -72,6 +72,10 @@
             android:exported="false"
             android:label="Courses"/>
         <activity
+            android:name=".activity.invoicePost"
+            android:exported="false"
+            android:label="Invoice"/>
+        <activity
             android:name=".activity.course_trainer_get"
             android:exported="true"
             android:label="Courses"/>
