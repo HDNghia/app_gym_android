@@ -38,7 +38,7 @@ public class course_user_signed_gets extends NavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        int userId = 1;
         ImageButton btnGoBack = findViewById(R.id.btnBack);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +52,7 @@ public class course_user_signed_gets extends NavActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(course_user_signed_gets.this, course_user_calendar.class);
-                //intent.putExtra("userId", );
+                intent.putExtra("_id", userId );
                 startActivity(intent);
             }
         });
