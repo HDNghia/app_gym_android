@@ -251,6 +251,7 @@ public class create_course_trainer extends AppCompatActivity {
 
         // In ra giá trị JSON của đối tượng course
         Log.d("Course JSON", courseJson);
+        
         courseApi = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         // Gửi yêu cầu POST để tạo khóa học
         Call<Course> call = courseApi.createCourse(course);
