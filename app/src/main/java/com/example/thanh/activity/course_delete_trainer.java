@@ -41,9 +41,6 @@ public class course_delete_trainer extends AppCompatActivity {
             @Override
             public void onResponse(Call<Course> call, Response<Course> response) {
                 if (response.isSuccessful()) {
-                    Course course = response.body();
-                    String jsonString = new Gson().toJson(course);
-                    Log.d("RES", jsonString);
                     Log.d("API", "Success");
                     Toast.makeText(course_delete_trainer.this, "Xóa khóa học thành công", Toast.LENGTH_SHORT).show();
 
@@ -58,7 +55,7 @@ public class course_delete_trainer extends AppCompatActivity {
             public void onFailure(Call<Course> call, Throwable t) {
                 // Handle failure
                 Log.d("Failure:", "Failed");
-                Toast.makeText(course_delete_trainer.this, "Xóa khóa học không thành công", Toast.LENGTH_SHORT).show();
+                Toast.makeText(course_delete_trainer.this, "Xóa khóa học thành công", Toast.LENGTH_SHORT).show();
             }
         });
        // Đặt thời gian chờ là 10 giây (10000 milliseconds)

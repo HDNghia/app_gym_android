@@ -50,7 +50,8 @@ public class course_trainer_get extends NavActivity {
 
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         Log.d("Tag","Heloo");
-        getCoursesByTrainerID(13);
+        int trainerId = 13;
+        getCoursesByTrainerID(trainerId);
 
         ImageButton btnGoBack = findViewById(R.id.btnBack);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
@@ -60,14 +61,15 @@ public class course_trainer_get extends NavActivity {
                 onBackPressed(); // Navigate back to the previous screen
             }
         });
-//        ImageButton courseCalendarView = findViewById(R.id.courseCalendarView);
-//        courseCalendarView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(course_trainer_get.this, course_calendar_view.class);
-//                startActivity(intent);
-//            }
-//        });
+        ImageButton courseCalendarView = findViewById(R.id.courseCalendarView);
+        courseCalendarView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(course_trainer_get.this, course_trainer_calendar.class);
+                intent.putExtra("_id", trainerId);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton createCourseButton = findViewById(R.id.createCourseButton);
         createCourseButton.setOnClickListener(new View.OnClickListener() {

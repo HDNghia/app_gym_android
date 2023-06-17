@@ -200,19 +200,8 @@ public class update_course_trainer extends AppCompatActivity {
         course.setFee(fee);
         course.setCapacity(capacity);
         course.setServiceTypeId(serviceTypeId);
-        course.setTrainerId(2);
         course.setStatus(status);
         course.setAttachment("Teo");
-//        course.setTitle("title");
-//        course.setDescription("description");
-//        course.setLocation("location");
-//        course.setStartDate(1683103370);  // Chuyển đổi thành số nguyên
-//        course.setEndDate(1683103370);  // Chuyển đổi thành số nguyên
-//        course.setFee(12);
-//        course.setCapacity(12);
-//        course.setServiceTypeId(1);
-//        course.setTrainerId(2);
-//        course.setStatus(0);
 
         Log.d("MyApp", "Title: " + course.getTitle());
         Log.d("MyApp", "Description: " + course.getDescription());
@@ -265,14 +254,6 @@ public class update_course_trainer extends AppCompatActivity {
         });
         Intent intent = new Intent(update_course_trainer.this, course_trainer_get.class);
         startActivity(intent);
-//        setContentView(R.layout.create_course_notify);
-//        Button backToHome= findViewById(R.id.buttonBack);
-//        backToHome.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(update_course_trainer.this, course_trainer_get.class);
-//                startActivity(intent);
-//            }
-//        });
+
     }
 }

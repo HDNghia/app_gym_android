@@ -51,7 +51,7 @@ public class course_trainer_details extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(view.getContext(), course_delete_trainer.class);
-                intent.putExtra("id", courseId);
+                intent.putExtra("_id", courseId);
                 view.getContext().startActivity(intent);
             }
         });
