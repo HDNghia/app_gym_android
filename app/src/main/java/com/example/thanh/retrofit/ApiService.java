@@ -36,8 +36,12 @@ public interface ApiService {
     @POST("v1/user")
     Call<User> createUser(@Body User requestData);
 
+    @GET("v1/sendEmail/{email}/{otp}")
+    Call<Void> verifyEmailOtp(@Path("email") String email, @Path("otp") String otp);
     @POST("v1/user/login")
     Call<User> logIn(@Body User requestData);
+    @POST("v1/user/changepass")
+    Call<User> changepass(@Body User requestData);
 
     @GET("v1/user")
     Call<List<User>> getUserByName(@Query("name") String name);
