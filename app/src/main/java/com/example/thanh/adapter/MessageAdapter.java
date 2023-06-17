@@ -40,6 +40,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
         // Hiển thị dữ liệu trong view
         if(message.getSenderId() != 1){
+
             TextView chatPartner = view.findViewById(R.id.chatTextViewLeft);
             ImageView facePartner = view.findViewById(R.id.face_partner);
             TextView chatUser = view.findViewById(R.id.chatTextViewRight);

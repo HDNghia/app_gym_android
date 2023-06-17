@@ -79,6 +79,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <Button
+                        android:id="@+id/btnHistory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="28dp"
+                        android:text="History"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteY="0dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -185,8 +194,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="walletTextView"
-                                 />
+                                />
                         </LinearLayout>
+
                         <Button
                             android:id="@+id/withDraw"
                             android:layout_width="wrap_content"
@@ -199,6 +209,7 @@
                             android:layout_height="wrap_content"
                             android:visibility="gone"
                             android:text="RECHARGER"/>
+
 
                     </LinearLayout>
 
@@ -264,17 +275,17 @@
                                     android:layout_height="wrap_content"
                                     android:hint="Enter your gender" />
 
-<!--                                <TextView-->
-<!--                                    android:id="@+id/emailTextView"-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:text="Email" />-->
+                                <!--                                <TextView-->
+                                <!--                                    android:id="@+id/emailTextView"-->
+                                <!--                                    android:layout_width="match_parent"-->
+                                <!--                                    android:layout_height="wrap_content"-->
+                                <!--                                    android:text="Email" />-->
 
-<!--                                <EditText-->
-<!--                                    android:id="@+id/emailEditText"-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:hint="Enter your email" />-->
+                                <!--                                <EditText-->
+                                <!--                                    android:id="@+id/emailEditText"-->
+                                <!--                                    android:layout_width="match_parent"-->
+                                <!--                                    android:layout_height="wrap_content"-->
+                                <!--                                    android:hint="Enter your email" />-->
 
                                 <TextView
                                     android:id="@+id/phoneTextView"
@@ -307,7 +318,7 @@
                                     android:layout_marginLeft="10dp"
                                     android:text="Update"
                                     android:layout_gravity="center"
-                                     />
+                                    />
                             </LinearLayout>
 
                         </ScrollView>

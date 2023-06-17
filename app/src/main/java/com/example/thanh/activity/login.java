@@ -87,8 +87,8 @@ public class login extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     User User1 = response.body();
-                    String jsonString = new Gson().toJson(User1);
-                    Log.d("RES", jsonString);
+                    String jsonString = new Gson().toJson(User1.getAvt());
+                    Log.d("Tuan", jsonString);
                     saveUser(User1);
                     Toast.makeText(login.this, "Success: " +"Login Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(login.this, post_user_gets.class);
@@ -110,6 +110,7 @@ public class login extends AppCompatActivity {
         User user = new User();
         user.set_id(u.get_id());
         user.setEmail(u.getEmail());
+        user.setAvt(u.getAvt());
         long result;
         databaseHelper.deleteAll();
         result = databaseHelper.addUser(user);

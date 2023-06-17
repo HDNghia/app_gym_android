@@ -53,6 +53,7 @@ public class profile_user_get  extends NavActivity{
     private Button btnUpdate;
     private Button reCharGer;
     private Button withDraw;
+    private Button btnHistory;
     private List<User> ul;
 
     @SuppressLint("WrongViewCast")
@@ -62,7 +63,6 @@ public class profile_user_get  extends NavActivity{
 //        setContentView(R.layout.profile_user_get);
 
         databaseHelper = new DatabaseHelper(this);
-
         btnUpdate = findViewById(R.id.btnUpdate);
         avatarImageView = findViewById(R.id.imageViewAva);
         bankNameTextView = findViewById(R.id.bankName);
@@ -76,17 +76,19 @@ public class profile_user_get  extends NavActivity{
         LastNameEditText = findViewById(R.id.LastNameEditText);
         reCharGer = findViewById(R.id.reCharGer);
         withDraw = findViewById(R.id.withDraw);
+        btnHistory = findViewById(R.id.btnHistory);
 
         ul = databaseHelper.getAllUser();
         if(ul.get(0).getRole() == 1){
             reCharGer.setVisibility(View.VISIBLE);
-
         }
+        Log.d("Tuan", ul.get(0).getAvt());
         if(ul.get(0).getRole() == 2){
             withDraw.setVisibility(View.VISIBLE);
         }
-
-        String imageUrl = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80";
+        Log.d("bug", String.valueOf(ul.get(0).getAvt()));
+        Log.d("bug", "vo profile");
+        String imageUrl = ul.get(0).getAvt();
 
         Picasso.get()
                 .load(imageUrl)
@@ -110,6 +112,13 @@ public class profile_user_get  extends NavActivity{
             }
         });
         reCharGer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(profile_user_get.this, invoicePost.class);
+                startActivity(intent);
+            }
+        });
+        btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(profile_user_get.this, Invoice_user_gets.class);

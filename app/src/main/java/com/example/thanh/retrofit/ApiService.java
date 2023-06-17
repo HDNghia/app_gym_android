@@ -121,4 +121,6 @@ public interface ApiService {
     @GET("v1/invoice/{id}")
     Call<List<Invoice>> getInvoice(@Path("id") int id);
 
+    @POST("v1/invoice")
+    Call<Invoice> createInvoice(@Body Invoice invoice);
 }
