@@ -4,6 +4,7 @@ import com.example.thanh.model.Conversation;
 import com.example.thanh.model.Course;
 import com.example.thanh.model.CourseDetail;
 import com.example.thanh.model.CourseRegister;
+import com.example.thanh.model.CourseSchedule;
 import com.example.thanh.model.CourseScheduleCalendar;
 import com.example.thanh.model.CourseScheduleDetail;
 import com.example.thanh.model.CourseUser;
@@ -117,4 +118,6 @@ public interface ApiService {
     @GET("v1/courseSchedule/trainer-scheduled/{id}")
     Call<List<CourseScheduleCalendar>> getCourseScheduleCalendarOfTrainer(@Path("id") int id);
 
+    @PUT("v1/courseSchedule/{id}")
+    Call<CourseSchedule> updateCourseSchedule(@Body CourseSchedule courseSchedule, @Path("id") int id);
 }

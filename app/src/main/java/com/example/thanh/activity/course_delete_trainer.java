@@ -1,5 +1,7 @@
 package com.example.thanh.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,8 +34,6 @@ public class course_delete_trainer extends AppCompatActivity {
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         int courseID = getIntent().getIntExtra("_id", -1);
         deleteCourseByCourseId(courseID);
-        Intent intent = new Intent(course_delete_trainer.this, course_trainer_get.class);
-        startActivity(intent);
 }
     private void deleteCourseByCourseId(int courseID) {
         Call<Course> call = apiService.deleteCourseByID(courseID);
@@ -57,8 +57,21 @@ public class course_delete_trainer extends AppCompatActivity {
                 Log.d("Failure:", "Failed");
                 Toast.makeText(course_delete_trainer.this, "Xóa khóa học thành công", Toast.LENGTH_SHORT).show();
             }
-        });
-       // Đặt thời gian chờ là 10 giây (10000 milliseconds)
 
+        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(course_delete_trainer.this);
+        builder.setTitle("Quay trở về trang khóa học");
+        builder.setMessage("Bạn có muốn quay trở về trang khóa học không?");
+        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Xử lý sự kiện khi bấm nút "Đồng ý"
+                // Thực hiện hành động quay trở về trang khóa học
+                // Ví dụ:
+                Intent intent = new Intent(course_delete_trainer.this, course_trainer_get.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }}

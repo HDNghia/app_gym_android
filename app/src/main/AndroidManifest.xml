@@ -92,6 +92,10 @@
             android:exported="false"
             android:label="Course Calendar" />
         <activity
+            android:name=".activity.course_schedule_trainer_update"
+            android:exported="false"
+            android:label="Course Schedule Update" />
+        <activity
             android:name=".activity.update_course_trainer"
             android:exported="false"
             android:label="Update Course" />

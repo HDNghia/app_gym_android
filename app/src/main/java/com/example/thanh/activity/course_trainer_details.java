@@ -35,15 +35,19 @@ public class course_trainer_details extends AppCompatActivity {
         setContentView(R.layout.course_trainer_details);
 
         ImageButton btnGoBack = findViewById(R.id.btnBack);
+        int courseId = getIntent().getIntExtra("id", -1);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Handle the button click event
-                onBackPressed(); // Navigate back to the previous screen
+                Intent intent = new Intent(course_trainer_details.this, course_trainer_get.class);
+
+                startActivity(intent);
+                finish();
             }
         });
 
-        int courseId = getIntent().getIntExtra("id", -1);
+
         Log.d("CourseId", String.valueOf(courseId));
         Button deleteCourse = findViewById(R.id.deleteCourse);
         deleteCourse.setOnClickListener(new View.OnClickListener() {
