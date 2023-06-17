@@ -39,13 +39,17 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
         ImageView userImageView = view.findViewById(R.id.userImageView);
 
 
+        if(postItem.getUserInfo().getAvt().equals("")){
+
+        }else{
             String imageUrl1 = postItem.getUserInfo().getAvt();
             Picasso.get()
                     .load(imageUrl1)
                     .resize(50, 50)
                     .into(userImageView);
+        }
 
-        if(postItem.getAttachmentId1().equals("null")){
+        if(postItem.getAttachmentId1().equals("")){
             imageView.setVisibility(View.GONE);
 //        ImageView imageView = view.findViewById(R.id.userImageView);
 

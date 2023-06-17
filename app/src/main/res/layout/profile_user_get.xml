@@ -137,7 +137,7 @@
                             android:layout_height="wrap_content"
                             android:text="emailTextView"
                             android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
                         <LinearLayout
                             android:layout_width="wrap_content"

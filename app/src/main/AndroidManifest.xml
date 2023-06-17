@@ -95,10 +95,10 @@
             android:name=".activity.course_trainer_details"
             android:exported="false"
             android:label="Course Details" />
-        <activity
-            android:name=".activity.course_trainer_calendar"
-            android:exported="false"
-            android:label="Course Calendar" />
+<!--        <activity-->
+<!--            android:name=".activity.course_trainer_calendar"-->
+<!--            android:exported="false"-->
+<!--            android:label="Course Calendar" />-->
         <activity
             android:name=".activity.course_schedule_trainer_update"
             android:exported="false"
@@ -118,11 +118,11 @@
         <activity
             android:name=".activity.login"
             android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.register"

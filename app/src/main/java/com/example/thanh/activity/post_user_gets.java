@@ -171,7 +171,7 @@ public class post_user_gets extends NavActivity implements PostItemAdapter.OnCom
                 }
             });
         }else {
-            imageUri = Uri.parse("null");
+            imageUri = Uri.parse("");
             post(apiService, postEditText.getText().toString(), imageUri);
         }
         }

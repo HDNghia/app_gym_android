@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.thanh.model.Message;
 import com.example.thanh.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -61,6 +62,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
             facePartner.setVisibility(View.GONE);
             chatUser.setVisibility(View.VISIBLE);
             faceUser.setVisibility(View.VISIBLE);
+
         }
         return view;
     }

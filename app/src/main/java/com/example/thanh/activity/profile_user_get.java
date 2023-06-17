@@ -88,13 +88,16 @@ public class profile_user_get  extends NavActivity{
         }
         Log.d("bug", String.valueOf(ul.get(0).getAvt()));
         Log.d("bug", "vo profile");
-        String imageUrl = ul.get(0).getAvt();
+        if(ul.get(0).getAvt().equals("")){
 
-        Picasso.get()
-                .load(imageUrl)
+        }else {
+            String imageUrl = ul.get(0).getAvt();
+            Picasso.get()
+                    .load(imageUrl)
 //                .resize(567, 499)
-                .resize(52, 37)
-                .into(avatarImageView);
+                    .resize(52, 37)
+                    .into(avatarImageView);
+        }
 
 
         // Khởi tạo Retrofit
