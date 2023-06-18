@@ -112,11 +112,12 @@ public class message_user_get extends AppCompatActivity {
                     // Lấy message đã được tạo từ response
                     Message postedMessage = response.body();
 
+                    getMessageOfUser(conversationId);
                     // Thêm message vào danh sách hiện tại (nếu cần)
-                    if (messageList != null) {
-                        messageList.add(postedMessage);
-                        messageAdapter.notifyDataSetChanged();
-                    }
+//                    if (messageList != null) {
+//                        messageList.add(postedMessage);
+//                        messageAdapter.notifyDataSetChanged();
+//                    }
                 } else {
                     // Xử lý lỗi khi gửi yêu cầu POST
                     Toast.makeText(message_user_get.this, "Failed to post message", Toast.LENGTH_SHORT).show();

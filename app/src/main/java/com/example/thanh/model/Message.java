@@ -8,8 +8,12 @@ public class Message {
     private String messageContent;
     private long sentDate;
     private int status;
-    private int __v;
 
+    private UserDetail userInfo;
+    private int __v;
+    public void setUserInfo(UserDetail userInfo) {
+        this.userInfo = userInfo;
+    }
     public void set_id(int _id) {
         this._id = _id;
     }
@@ -72,6 +76,10 @@ public class Message {
 
     public int get__v() {
         return __v;
+    }
+
+    public UserDetail getUserInfo() {
+        return userInfo;
     }
     @Override
     public String toString() {

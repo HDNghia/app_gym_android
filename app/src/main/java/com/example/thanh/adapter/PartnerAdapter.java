@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.example.thanh.model.*;
 import com.example.thanh.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,9 +40,19 @@ public class PartnerAdapter extends ArrayAdapter<User> {
         User partner = partnerList.get(position);
 
         // Hiển thị dữ liệu trong view
-//        ImageView face_partner = view.findViewById(R.id.face_partner);
+        ImageView face_partner = view.findViewById(R.id.face_partner);
 //        String imageUrl = "https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528";
 //        Picasso.get().load(imageUrl).into(face_partner);
+
+        if(partner.getAvt().equals("")){
+            Log.d("bug", "voo get avt equals");
+        }else{
+            String imageUrl1 = partner.getAvt();
+            Picasso.get()
+                    .load(imageUrl1)
+                    .resize(50, 50)
+                    .into(face_partner);
+        }
         TextView nicknameTextView = view.findViewById(R.id.nicknameTextView);
 //        TextView timestampTextView = view.findViewById(R.id.timestampTextView);
 //        TextView LastMessage = view.findViewById(R.id.messageTextView);

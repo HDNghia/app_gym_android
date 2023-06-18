@@ -44,7 +44,6 @@ public class invoiceAdapter extends ArrayAdapter<Invoice> {
         TextView textViewTranQty = listItemView.findViewById(R.id.textViewTranQty);
         TextView textViewTranDate = listItemView.findViewById(R.id.textViewTranDate);
         TextView textViewNote = listItemView.findViewById(R.id.textViewNote);
-        TextView textViewTranType = listItemView.findViewById(R.id.textViewTranType);
         TextView textViewStatus = listItemView.findViewById(R.id.textViewStatus);
 
         Date date = new Date(currentInvoice.getTranDate());
@@ -56,8 +55,7 @@ public class invoiceAdapter extends ArrayAdapter<Invoice> {
         // Đặt giá trị cho các thành phần trong item layout từ transaction hiện tại
         textViewTranQty.setText("Quantity: " + currentInvoice.getTranQty());
         textViewTranDate.setText("Date: " + dateString);
-        textViewNote.setText("Note: " + currentInvoice.getNote());
-        textViewTranType.setText("Type: " + currentInvoice.getTranType());
+        textViewNote.setText("Note: " + currentInvoice.getTranContent());
         textViewStatus.setText("Status: " + currentInvoice.getStatus());
 
         return listItemView;

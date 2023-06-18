@@ -38,9 +38,8 @@ public class PostItemAdapter extends ArrayAdapter<Post> {
         ImageView imageView = view.findViewById(R.id.posterImageView);
         ImageView userImageView = view.findViewById(R.id.userImageView);
 
-
         if(postItem.getUserInfo().getAvt().equals("")){
-
+            Log.d("bug", "voo get avt equals");
         }else{
             String imageUrl1 = postItem.getUserInfo().getAvt();
             Picasso.get()

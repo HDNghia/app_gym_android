@@ -2,7 +2,9 @@ package com.example.thanh.activity;
 import static com.example.thanh.retrofit.RetrofitClient.getRetrofitInstance;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,14 +15,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.thanh.R;
 import com.example.thanh.model.User;
 import com.example.thanh.retrofit.ApiService;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +56,7 @@ public class profile_user_get  extends NavActivity{
     private DatabaseHelper databaseHelper;
     private EditText firstNameEditText;
     private EditText LastNameEditText;
-    private ImageView avatarImageView;
+    private ImageView selectImage;
     private TextView bankNameTextView;
     private TextView workingLevelTextView;
     private TextView walletTextView;
@@ -55,6 +70,10 @@ public class profile_user_get  extends NavActivity{
     private Button withDraw;
     private Button btnHistory;
     private List<User> ul;
+    private Uri imageUri;
+    private StorageReference storageReference;
+    private ProgressDialog progressDialog;
+    private ImageView btnSelectImage;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -64,7 +83,7 @@ public class profile_user_get  extends NavActivity{
 
         databaseHelper = new DatabaseHelper(this);
         btnUpdate = findViewById(R.id.btnUpdate);
-        avatarImageView = findViewById(R.id.imageViewAva);
+        selectImage = findViewById(R.id.imageViewAva);
         bankNameTextView = findViewById(R.id.bankName);
         workingLevelTextView = findViewById(R.id.workingLevel);
         walletTextView = findViewById(R.id.walletTextView);
@@ -77,8 +96,10 @@ public class profile_user_get  extends NavActivity{
         reCharGer = findViewById(R.id.reCharGer);
         withDraw = findViewById(R.id.withDraw);
         btnHistory = findViewById(R.id.btnHistory);
+        btnSelectImage = findViewById(R.id.btnEditImage);
 
         ul = databaseHelper.getAllUser();
+        Log.d("Role", String.valueOf(ul.get(0).getRole()));
         if(ul.get(0).getRole() == 1){
             reCharGer.setVisibility(View.VISIBLE);
         }
@@ -96,7 +117,7 @@ public class profile_user_get  extends NavActivity{
                     .load(imageUrl)
 //                .resize(567, 499)
                     .resize(52, 37)
-                    .into(avatarImageView);
+                    .into(selectImage);
         }
 
 
@@ -111,10 +132,23 @@ public class profile_user_get  extends NavActivity{
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateApi();
+                uploadImage();
+            }
+        });
+        btnSelectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SelectImage();
             }
         });
         reCharGer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(profile_user_get.this, invoicePost.class);
+                startActivity(intent);
+            }
+        });
+        withDraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(profile_user_get.this, invoicePost.class);
@@ -136,6 +170,66 @@ public class profile_user_get  extends NavActivity{
                 onBackPressed(); // Navigate back to the previous screen
             }
         });
+    }
+    private void uploadImage(){
+        if(imageUri != null){
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading File....");
+            progressDialog.show();
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
+            Date now = new Date();
+            String fileName = formatter.format(now);
+            storageReference = FirebaseStorage.getInstance().getReference("images/"+fileName);
+            storageReference.putFile(imageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            selectImage.setImageURI(null);
+                            Toast.makeText(profile_user_get.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
+                            selectImage.setVisibility(View.GONE);
+                            if (progressDialog.isShowing())
+                                progressDialog.dismiss();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            if (progressDialog.isShowing())
+                                progressDialog.dismiss();
+                            Toast.makeText(profile_user_get.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            final StorageReference ref = storageReference.child("images/mountains.jpg");
+            UploadTask uploadTask = ref.putFile(imageUri);
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+                    Log.d("bug", String.valueOf(ref.getDownloadUrl()));
+                    // Continue with the task to get the download URL
+                    return ref.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        Log.d("bug", String.valueOf(downloadUri));
+                        updateApi(apiService, downloadUri);
+
+                    } else {
+                        // Handle failures
+                        // ...
+                    }
+                }
+            });
+        }else {
+            imageUri = Uri.parse("");
+            updateApi(apiService, imageUri);
+        }
     }
 
     // Phương thức giả lập dữ liệu đối tượng ProfileUserGet (thay thế bằng dữ liệu thật)
@@ -176,14 +270,22 @@ public class profile_user_get  extends NavActivity{
         });
 
     }
-    private void updateApi(){
+    private void updateApi(ApiService apiService,  Uri downloadUri){
         // Tạo đối tượng User với các thuộc tính được chỉ định
         User user = new User();
         user.setAge(ul.get(0).getAge());
         user.setHeight(ul.get(0).getHeight());
         user.setWeight(ul.get(0).getWeight());
         user.setWorkingLevel(ul.get(0).getWorkingLevel());
-        user.setAvt(ul.get(0).getAvt());
+        if(downloadUri.equals("")){
+            user.setAvt(ul.get(0).getAvt());
+            Log.d("bug","vo update 1");
+            Log.d("bug", String.valueOf(downloadUri));
+        }else {
+            Log.d("bug","vo update 2");
+            Log.d("bug", String.valueOf(downloadUri));
+            user.setAvt(String.valueOf(downloadUri));
+        }
         user.setCoverId(ul.get(0).getCoverId());
         user.setWallet(ul.get(0).getWallet());
 //        user.setIsBan(false);
@@ -210,6 +312,7 @@ public class profile_user_get  extends NavActivity{
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(profile_user_get.this, "Update SuccessFully", Toast.LENGTH_SHORT).show();
+                    fetchApi();
                     // Xử lý thành công
                 } else {
                     // Xử lý lỗi
@@ -221,6 +324,23 @@ public class profile_user_get  extends NavActivity{
                 // Xử lý lỗi
             }
         });
+    }
+    private void SelectImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,100);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("bug", "vo cái selected0");
+        if (requestCode == 100 && data != null && data.getData() != null){
+            Log.d("bug", "vo cái selected");
+            imageUri = data.getData();
+            selectImage.setVisibility(View.VISIBLE);
+            selectImage.setImageURI(imageUri);
+        }
     }
 
 }

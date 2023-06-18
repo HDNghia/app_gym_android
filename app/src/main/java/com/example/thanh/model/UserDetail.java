@@ -15,7 +15,7 @@ public class UserDetail {
     @SerializedName("workingLevel")
     private int workingLevel;
 
-    @SerializedName("avtId")
+    @SerializedName("avt")
     private String avt;
 
     @SerializedName("coverId")

@@ -33,13 +33,7 @@
         android:textSize="16sp"
         android:text="Note"
         android:textColor="@android:color/black" />
-    <TextView
-        android:id="@+id/textViewTranType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="Note"
-        android:textColor="@android:color/black" />
+
     <TextView
         android:id="@+id/textViewStatus"
         android:layout_width="match_parent"

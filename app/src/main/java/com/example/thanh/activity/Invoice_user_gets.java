@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.thanh.R;
 import com.example.thanh.adapter.invoiceAdapter;
 import com.example.thanh.model.Invoice;
+import com.example.thanh.model.User;
 import com.example.thanh.retrofit.ApiService;
 import com.google.gson.Gson;
 
@@ -30,11 +31,16 @@ public class Invoice_user_gets extends AppCompatActivity {
     private invoiceAdapter adapter;
     private List<Invoice> invoices;
     private ApiService apiService;
+    private DatabaseHelper databaseHelper;
+    private List<User> ul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.invoice_list);
+
+        databaseHelper = new DatabaseHelper(this);
+        ul = databaseHelper.getAllUser();
 
         // Khởi tạo Retrofit
         Retrofit retrofit = getRetrofitInstance();
@@ -62,7 +68,7 @@ public class Invoice_user_gets extends AppCompatActivity {
 
     }
     private void getAllInvoice(ApiService apiService) {
-        Call<List<Invoice>> call = apiService.getInvoice(1);
+        Call<List<Invoice>> call = apiService.getInvoice(ul.get(0).get_id());
         call.enqueue(new Callback<List<Invoice>>() {
             @Override
             public void onResponse(Call<List<Invoice>> call, Response<List<Invoice>> response) {

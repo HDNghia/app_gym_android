@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.thanh.R;
 import com.example.thanh.adapter.ConversationAdapter;
 import com.example.thanh.model.Conversation;
+import com.example.thanh.model.User;
 import com.example.thanh.retrofit.ApiService;
 
 import java.util.List;
@@ -34,8 +35,8 @@ public class conversation_user_gets extends NavActivity implements ConversationA
     private EditText searchEditText;
     private ApiService apiService;
     private ImageView addNewPartner;
-
-
+    private DatabaseHelper databaseHelper;
+    private List<User> ul;
     @Override
     protected int getLayoutResourceId() {
         return R.layout.conversation_user_gets;
@@ -49,6 +50,7 @@ public class conversation_user_gets extends NavActivity implements ConversationA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        databaseHelper = new DatabaseHelper(this);
 
         listView = findViewById(R.id.list_view);
         searchEditText = findViewById(R.id.searchEditText);
@@ -68,8 +70,9 @@ public class conversation_user_gets extends NavActivity implements ConversationA
         // Khởi tạo ApiService
         apiService = retrofit.create(ApiService.class);
 
+        ul = databaseHelper.getAllUser();
         // Lấy danh sách conversations từ API
-        int conversationId = 1; // Thay đổi giá trị ID theo ý muốn
+        int conversationId = ul.get(0).get_id(); // Thay đổi giá trị ID theo ý muốn
         getConversation(apiService, conversationId);
 
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -132,7 +135,7 @@ public class conversation_user_gets extends NavActivity implements ConversationA
 
     private void getConversation(ApiService apiService, int id) {
         Log.d("bug", "vô");
-        Call<List<Conversation>> call = apiService.getConversation(id);
+        Call<List<Conversation>> call = apiService.getConversation(-1);
         call.enqueue(new Callback<List<Conversation>>() {
             @Override
             public void onResponse(Call<List<Conversation>> call, Response<List<Conversation>> response) {
@@ -163,8 +166,9 @@ public class conversation_user_gets extends NavActivity implements ConversationA
         // Xử lý sự kiện khi người dùng nhấp vào một cuộc trò chuyện
         Intent intent = new Intent(conversation_user_gets.this, message_user_get.class);
 //         Khởi chạy Intent
+
         intent.putExtra("conversation_id", conversationId);
-        intent.putExtra("user_id", userId);
+        intent.putExtra("user_id", ul.get(0).get_id());
         startActivity(intent);
     }
 }

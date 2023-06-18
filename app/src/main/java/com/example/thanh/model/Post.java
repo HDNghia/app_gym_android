@@ -111,6 +111,7 @@ public class Post {
     public UserDetail getUserInfo() {
         return userInfo;
     }
+
 }
 
 

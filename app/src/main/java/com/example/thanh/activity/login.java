@@ -111,6 +111,7 @@ public class login extends AppCompatActivity {
         user.set_id(u.get_id());
         user.setEmail(u.getEmail());
         user.setAvt(u.getAvt());
+        user.setRole(u.getRole());
         long result;
         databaseHelper.deleteAll();
         result = databaseHelper.addUser(user);

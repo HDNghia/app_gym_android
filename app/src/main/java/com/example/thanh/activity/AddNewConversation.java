@@ -42,8 +42,9 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
     private List<User> PartnerList;
     private ListView listPartner;
     private PartnerAdapter adapter;
-
+    private DatabaseHelper databaseHelper;
     private ApiService apiService;
+    private List<User> ul;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -51,6 +52,8 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_conversation);
 
+        databaseHelper = new DatabaseHelper(this);
+        ul = databaseHelper.getAllUser();
         ImageButton btnGoBack = findViewById(R.id.btnBack);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +151,7 @@ public class AddNewConversation extends AppCompatActivity implements PartnerAdap
         String nickname = nicknameEditText.getText().toString();
 
         Conversation conversation = new Conversation();
-        conversation.setUserId(1);
+        conversation.setUserId(ul.get(0).get_id());
         conversation.setPartnerId(PartnerId);
 //        conversation.setGroupConver(isGroupConver);
         conversation.setLastActive(1);
