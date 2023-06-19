@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Fitness Application</string>
+    <string name="navigation_drawer_open">Click to open</string>
+    <string name="navigation_drawer_close">Click to close</string>
+    <string-array name="Session_items">
+        <item>breakfast</item>
+        <item>lunch</item>
+        <item>afternoon</item>
+        <item>dinner</item>
+    </string-array>
+    <string-array name="service_types">
+        <item>Thể hình</item>
+        <item>Yoga</item>
+        <item>Bóng đá</item>
+        <item>Bơi lội</item>
+    </string-array>
+    <string-array name="course_status">
+        <item>Chưa bắt đầu</item>
+        <item>Đang diễn ra</item>
+        <item>Đã hoàn thành</item>
+    </string-array>
+</resources>
